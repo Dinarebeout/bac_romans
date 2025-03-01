@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const userAnswer = selectedAnswer.value;
       if (userAnswer === correctAnswer) {
         score++;
-        resultDiv.innerHTML = `<span class="correct">Bravo !</span> ${explanation}`;
+        resultDiv.innerHTML = `<span class="correct">Correct !</span> ${explanation}`;
       } else {
         resultDiv.innerHTML = `<span class="error">Faux.</span> Réponse correcte : ${correctAnswer}. ${explanation}`;
       }
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  document.getElementById('reset-btn').addEventListener('click', () => {
+  document.getElementById('reset-btn')?.addEventListener('click', () => {
     score = 0;
     localStorage.setItem(`${roman}-score`, score);
     document.querySelectorAll('.result').forEach(div => div.innerHTML = '');
