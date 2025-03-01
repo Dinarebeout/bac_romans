@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>QCM - Antigone</title>
+  <link rel="stylesheet" href="quiz.css">
+</head>
+<body>
+  <div class="container">
+    <h1>QCM Complet - Antigone</h1>
+    
+    <!-- Section 1 (Début) -->
+    <h2>Section 1</h2>
+    <div class="question">
+      <p>1. Pourquoi Antigone veut-elle enterrer son frère ?</p>
+      <input type="radio" name="qa1-1" value="a"> a) Pour gagner la guerre<br>
+      <input type="radio" name="qa1-1" value="b"> b) Par devoir moral et religieux<br>
+      <input type="radio" name="qa1-1" value="c"> c) Pour défier Créon ouvertement<br>
+      <button onclick="checkAnswer('qa1-1', 'b')">Soumettre</button>
+      <p id="result-qa1-1"></p>
+    </div>
+    <!-- Ajoute 9 autres questions -->
+
+    <!-- Section 2 -->
+    <h2>Section 2</h2>
+    <div class="question">
+      <p>1. Que représente Créon dans l’œuvre ?</p>
+      <input type="radio" name="qa2-1" value="a"> a) L’amour<br>
+      <input type="radio" name="qa2-1" value="b"> b) L’ordre et la loi<br>
+      <input type="radio" name="qa2-1" value="c"> c) La liberté<br>
+      <button onclick="checkAnswer('qa2-1', 'b')">Soumettre</button>
+      <p id="result-qa2-1"></p>
+    </div>
+    <!-- Ajoute 9 autres questions -->
+  </div>
+  <script src="quiz.js"></script>
+</body>
+</html>
