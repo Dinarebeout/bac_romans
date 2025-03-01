@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>QCM - La Boîte à merveilles</title>
+  <link rel="stylesheet" href="quiz.css">
+</head>
+<body>
+  <div class="container">
+    <h1>QCM Complet - La Boîte à merveilles</h1>
+    
+    <!-- Chapitre 1 -->
+    <h2>Chapitre 1</h2>
+    <div class="question">
+      <p>1. Que fait Sidi Mohammed avec sa boîte à merveilles ?</p>
+      <input type="radio" name="q1-1" value="a"> a) Il la vend<br>
+      <input type="radio" name="q1-1" value="b"> b) Il y range des objets précieux<br>
+      <input type="radio" name="q1-1" value="c"> c) Il la donne à sa mère<br>
+      <button onclick="checkAnswer('q1-1', 'b')">Soumettre</button>
+      <p id="result-q1-1"></p>
+    </div>
+    <!-- Ajoute 9 autres questions pour Chapitre 1 ici -->
+
+    <!-- Chapitre 2 -->
+    <h2>Chapitre 2</h2>
+    <div class="question">
+      <p>1. Que fait Sidi Mohammed au début du chapitre 2 ?</p>
+      <input type="radio" name="q2-1" value="a"> a) Il va à l’école<br>
+      <input type="radio" name="q2-1" value="b"> b) Il joue dehors<br>
+      <input type="radio" name="q2-1" value="c"> c) Il écoute sa mère<br>
+      <button onclick="checkAnswer('q2-1', 'c')">Soumettre</button>
+      <p id="result-q2-1"></p>
+    </div>
+    <!-- Ajoute 9 autres questions pour Chapitre 2 ici -->
+  </div>
+  <script src="quiz.js"></script>
+</body>
+</html>
