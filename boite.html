@@ -144,10 +144,260 @@
                         }
                     ]
                 }
-                // Ajoutez les chapitres 2 à 12 ici
-            ]
-        };
-        startQuiz(quizData, "La Boîte à Merveilles");
-    </script>
-</body>
+<script>
+    const quizData = {
+        chapters: [
+            {
+                chapter: "Chapitre 1",
+                questions: [
+                    {
+                        question: "Pourquoi le narrateur, Sidi Mohammed, dit-il qu’il ne dort pas au début du roman ?",
+                        options: [
+                            "Parce qu’il a peur des cauchemars",
+                            "Parce qu’il pense à sa solitude",
+                            "Parce qu’il écoute les bruits de la maison",
+                            "Parce qu’il joue avec sa boîte à merveilles"
+                        ],
+                        correctAnswer: "Parce qu’il pense à sa solitude",
+                        explanation: "Le roman s’ouvre avec : « Moi, je ne dors pas. Je songe à ma solitude et j’en sens tout le poids. » Cela établit dès le départ le thème de la solitude qui hante le narrateur."
+                    },
+                    // Les autres questions du chapitre 1 sont omises ici pour brevité, mais restent dans votre code original
+                ]
+            },
+            {
+                chapter: "Chapitre 2",
+                questions: [
+                    {
+                        question: "Pourquoi le mardi est-il un jour particulier pour le narrateur ?",
+                        options: [
+                            "C’est le jour où il va au marché avec son père",
+                            "C’est un jour néfaste lié au msid",
+                            "C’est le jour où il reçoit des cadeaux",
+                            "C’est le jour où sa mère cuisine un plat spécial"
+                        ],
+                        correctAnswer: "C’est un jour néfaste lié au msid",
+                        explanation: "Le narrateur associe le mardi au msid, où il subit des leçons rigoureuses, ce qui le remplit d’amertume."
+                    },
+                    {
+                        question: "Que fait le narrateur après une nuit peuplée de cauchemars ?",
+                        options: [
+                            "Il va jouer dehors avec Zineb",
+                            "Il reste au lit toute la journée",
+                            "Il ouvre sa boîte à merveilles pour se consoler",
+                            "Il aide sa mère à la maison"
+                        ],
+                        correctAnswer: "Il ouvre sa boîte à merveilles pour se consoler",
+                        explanation: "La boîte est son refuge émotionnel, surtout après des nuits difficiles."
+                    },
+                    {
+                        question: "Qui est Zineb dans le roman ?",
+                        options: [
+                            "La sœur du narrateur",
+                            "La fille de Driss El Aouad et Rahma",
+                            "Une amie de Lalla Kenza",
+                            "Une élève du msid"
+                        ],
+                        correctAnswer: "La fille de Driss El Aouad et Rahma",
+                        explanation: "Zineb est la fille des voisins du premier étage, une figure qui apparaît dans la vie quotidienne du narrateur."
+                    },
+                    {
+                        question: "Quelle dispute éclate dans le chapitre 2 ?",
+                        options: [
+                            "Une dispute entre le narrateur et Zineb",
+                            "Une dispute entre la mère du narrateur et Rahma",
+                            "Une dispute entre le père du narrateur et Driss",
+                            "Une dispute entre Lalla Kenza et les voisins"
+                        ],
+                        correctAnswer: "Une dispute entre la mère du narrateur et Rahma",
+                        explanation: "La dispute concerne la lessive, révélant les tensions entre les femmes dans cet espace partagé."
+                    },
+                    {
+                        question: "Comment le narrateur décrit-il le fqih du msid ?",
+                        options: [
+                            "Comme un homme doux et patient",
+                            "Comme un maître sévère et autoritaire",
+                            "Comme un ami bienveillant",
+                            "Comme un vieillard faible"
+                        ],
+                        correctAnswer: "Comme un maître sévère et autoritaire",
+                        explanation: "Le fqih est une figure crainte, qui impose une discipline stricte, ce qui terrifie Sidi Mohammed."
+                    },
+                    {
+                        question: "Quel est le rôle de Lalla Zoubida, la mère du narrateur ?",
+                        options: [
+                            "Elle est une voyante comme Lalla Kenza",
+                            "Elle s’occupe du foyer et protège son fils",
+                            "Elle travaille comme tisserande avec son mari",
+                            "Elle enseigne au msid"
+                        ],
+                        correctAnswer: "Elle s’occupe du foyer et protège son fils",
+                        explanation: "Lalla Zoubida est une mère aimante et protectrice, bien que parfois superstitieuse."
+                    },
+                    {
+                        question: "Que fait Rahma pendant la dispute avec Lalla Zoubida ?",
+                        options: [
+                            "Elle demande pardon",
+                            "Elle crie et menace de partir",
+                            "Elle appelle son mari à l’aide",
+                            "Elle ignore Lalla Zoubida"
+                        ],
+                        correctAnswer: "Elle crie et menace de partir",
+                        explanation: "Rahma réagit avec colère, menaçant de quitter Dar Chouafa, ce qui amplifie le conflit."
+                    },
+                    {
+                        question: "Quel est le lien entre le narrateur et le msid ?",
+                        options: [
+                            "Il y va avec joie pour apprendre",
+                            "Il y est forcé et le déteste",
+                            "Il n’y va jamais",
+                            "Il y enseigne avec le fqih"
+                        ],
+                        correctAnswer: "Il y est forcé et le déteste",
+                        explanation: "Le msid est une source de peur et de frustration pour Sidi Mohammed."
+                    },
+                    {
+                        question: "Quel objet le narrateur utilise-t-il pour calmer ses peurs ?",
+                        options: [
+                            "Un livre sacré",
+                            "Sa boîte à merveilles",
+                            "Un jouet offert par Zineb",
+                            "Une amulette de Lalla Kenza"
+                        ],
+                        correctAnswer: "Sa boîte à merveilles",
+                        explanation: "Cet objet est son talisman personnel contre l’angoisse et la solitude."
+                    },
+                    {
+                        question: "Quelle est l’atmosphère générale de Dar Chouafa dans ce chapitre ?",
+                        options: [
+                            "Calme et harmonieuse",
+                            "Tendue à cause des conflits",
+                            "Joyeuse grâce aux enfants",
+                            "Silencieuse et ennuyeuse"
+                        ],
+                        correctAnswer: "Tendue à cause des conflits",
+                        explanation: "La dispute entre Lalla Zoubida et Rahma illustre les tensions dans cette maison collective."
+                    }
+                ]
+            },
+            {
+                chapter: "Chapitre 3",
+                questions: [
+                    {
+                        question: "Pourquoi le narrateur accompagne-t-il son père au souk dans ce chapitre ?",
+                        options: [
+                            "Pour acheter des jouets",
+                            "Pour aider son père à vendre des étoffes",
+                            "Pour apprendre un métier",
+                            "Pour rencontrer des amis"
+                        ],
+                        correctAnswer: "Pour aider son père à vendre des étoffes",
+                        explanation: "Sidi Mohammed accompagne son père, Moulay Abdeslam, au souk où celui-ci vend des étoffes tissées, ce qui montre leur lien et la vie laborieuse du père."
+                    },
+                    {
+                        question: "Comment le narrateur décrit-il le souk ?",
+                        options: [
+                            "Comme un lieu calme et ennuyeux",
+                            "Comme un endroit bruyant et animé",
+                            "Comme un espace effrayant",
+                            "Comme une école en plein air"
+                        ],
+                        correctAnswer: "Comme un endroit bruyant et animé",
+                        explanation: "Le souk est présenté avec des bruits, des couleurs et une foule, captivant l’enfant malgré son jeune âge."
+                    },
+                    {
+                        question: "Qui est Si Kaddour ?",
+                        options: [
+                            "Un marchand voisin du père du narrateur",
+                            "Le maître du msid",
+                            "Un ami de Lalla Kenza",
+                            "Le propriétaire de Dar Chouafa"
+                        ],
+                        correctAnswer: "Un marchand voisin du père du narrateur",
+                        explanation: "Si Kaddour est un vendeur d’épices installé près de Moulay Abdeslam au souk, avec qui il discute souvent."
+                    },
+                    {
+                        question: "Quelle est l’attitude du père du narrateur au souk ?",
+                        options: [
+                            "Il est impatient et nerveux",
+                            "Il est calme et patient avec les clients",
+                            "Il refuse de parler à quiconque",
+                            "Il se dispute avec les autres marchands"
+                        ],
+                        correctAnswer: "Il est calme et patient avec les clients",
+                        explanation: "Moulay Abdeslam est décrit comme un homme posé, qui négocie tranquillement, reflétant sa simplicité et sa dignité."
+                    },
+                    {
+                        question: "Que fait le narrateur pendant que son père travaille ?",
+                        options: [
+                            "Il joue avec d’autres enfants",
+                            "Il observe les gens et rêve",
+                            "Il aide activement à vendre",
+                            "Il lit un livre"
+                        ],
+                        correctAnswer: "Il observe les gens et rêve",
+                        explanation: "Sidi Mohammed passe son temps à regarder autour de lui et à laisser son imagination vagabonder, typique de son caractère rêveur."
+                    },
+                    {
+                        question: "Quelle anecdote le père raconte-t-il au narrateur ?",
+                        options: [
+                            "Une histoire sur un trésor caché",
+                            "Une dispute entre marchands",
+                            "Une leçon sur le tissage",
+                            "Une aventure dans les montagnes"
+                        ],
+                        correctAnswer: "Une aventure dans les montagnes",
+                        explanation: "Moulay Abdeslam évoque ses origines montagnardes, partageant une histoire qui fascine son fils."
+                    },
+                    {
+                        question: "Quel sentiment domine le narrateur au souk ?",
+                        options: [
+                            "La peur des voleurs",
+                            "L’admiration pour son père",
+                            "L’ennui d’être là",
+                            "La colère contre les clients"
+                        ],
+                        correctAnswer: "L’admiration pour son père",
+                        explanation: "Sidi Mohammed ressent une fierté et une affection profondes en observant son père au travail."
+                    },
+                    {
+                        question: "Que vend Si Kaddour au souk ?",
+                        options: [
+                            "Des étoffes comme Moulay Abdeslam",
+                            "Des épices et des herbes",
+                            "Des bijoux artisanaux",
+                            "Des fruits frais"
+                        ],
+                        correctAnswer: "Des épices et des herbes",
+                        explanation: "Si Kaddour est un marchand d’épices, dont les produits contrastent avec les étoffes du père."
+                    },
+                    {
+                        question: "Pourquoi le narrateur aime-t-il accompagner son père ?",
+                        options: [
+                            "Pour gagner de l’argent",
+                            "Pour échapper au msid",
+                            "Pour manger au souk",
+                            "Pour acheter des objets pour sa boîte"
+                        ],
+                        correctAnswer: "Pour échapper au msid",
+                        explanation: "Le souk est une échappatoire à la rigueur du msid, offrant une liberté temporaire à Sidi Mohammed."
+                    },
+                    {
+                        question: "Quelle est la relation entre Moulay Abdeslam et Si Kaddour ?",
+                        options: [
+                            "Ils sont rivaux",
+                            "Ils sont amis et se respectent",
+                            "Ils ne se parlent jamais",
+                            "Ils se disputent souvent"
+                        ],
+                        correctAnswer: "Ils sont amis et se respectent",
+                        explanation: "Les deux hommes partagent des conversations amicales, montrant une camaraderie au souk."
+                    }
+                ]
+            }
+            // Ajoutez les chapitres 4 à 12 ici si vous les avez
+        ]
+    };
+    startQuiz(quizData, "La Boîte à Merveilles");
+</script>
+                </body>
 </html>
