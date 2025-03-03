@@ -1,38 +1,153 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>QCM - Le Dernier Jour d’un Condamné</title>
-  <link rel="stylesheet" href="quiz.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - Les Derniers Jours d’un Condamné</title>
+    <link rel="stylesheet" href="quiz.css">
 </head>
 <body>
-  <div class="container">
-    <h1>QCM Complet - Le Dernier Jour d’un Condamné</h1>
-    
-    <!-- Section 1 (Début) -->
-    <h2>Section 1</h2>
-    <div class="question">
-      <p>1. Quel est le sentiment dominant du condamné au début ?</p>
-      <input type="radio" name="qc1-1" value="a"> a) Espoir<br>
-      <input type="radio" name="qc1-1" value="b"> b) Désespoir<br>
-      <input type="radio" name="qc1-1" value="c"> c) Colère<br>
-      <button onclick="checkAnswer('qc1-1', 'b')">Soumettre</button>
-      <p id="result-qc1-1"></p>
+    <div class="container">
+        <h1>Quiz - Les Derniers Jours d’un Condamné</h1>
+        <select id="chapter-select"></select>
+        <div id="quiz-info">
+            <p>Œuvre : <span id="book-title"></span></p>
+            <p>Section : <span id="chapter-title"></span></p>
+            <p>Question <span id="question-number"></span> / <span id="total-questions"></span></p>
+            <p>Score : <span id="score">0</span></p>
+        </div>
+        <div id="question-container">
+            <h2 id="question-text"></h2>
+            <ul id="options-list"></ul>
+            <button id="submit-btn" disabled>Soumettre</button>
+            <button id="next-btn" disabled>Question suivante</button>
+        </div>
+        <div id="feedback"></div>
+        <a href="index.html" class="book-link">Retour à l’accueil</a>
     </div>
-    <!-- Ajoute 9 autres questions -->
-
-    <!-- Section 2 -->
-    <h2>Section 2</h2>
-    <div class="question">
-      <p>1. Que symbolise la petite fille dans l’œuvre ?</p>
-      <input type="radio" name="qc2-1" value="a"> a) La justice<br>
-      <input type="radio" name="qc2-1" value="b"> b) L’innocence perdue<br>
-      <input type="radio" name="qc2-1" value="c"> c) La vengeance<br>
-      <button onclick="checkAnswer('qc2-1', 'b')">Soumettre</button>
-      <p id="result-qc2-1"></p>
-    </div>
-    <!-- Ajoute 9 autres questions -->
-  </div>
-  <script src="quiz.js"></script>
+    <script src="quiz.js"></script>
+    <script>
+        const quizData = {
+            chapters: [
+                {
+                    chapter: "Section 1 : Chapitres 1-5",
+                    questions: [
+                        {
+                            question: "Que fait le narrateur au début du roman ?",
+                            options: [
+                                "Il fuit la prison",
+                                "Il commence à écrire son journal",
+                                "Il parle aux juges",
+                                "Il rencontre sa famille"
+                            ],
+                            correctAnswer: "Il commence à écrire son journal",
+                            explanation: "Dès le chapitre 1, le narrateur décide d’écrire pour laisser une trace de ses pensées."
+                        },
+                        {
+                            question: "Où se trouve le narrateur dans ces chapitres ?",
+                            options: [
+                                "À la Conciergerie",
+                                "À Bicêtre",
+                                "Dans une maison",
+                                "Sur un bateau"
+                            ],
+                            correctAnswer: "À Bicêtre",
+                            explanation: "Il est emprisonné à Bicêtre, une prison connue pour ses conditions difficiles."
+                        },
+                        {
+                            question: "Quelle est sa première réaction à la condamnation ?",
+                            options: [
+                                "Il rit de sa situation",
+                                "Il refuse d’y croire",
+                                "Il célèbre sa liberté",
+                                "Il pardonne les juges"
+                            ],
+                            correctAnswer: "Il refuse d’y croire",
+                            explanation: "Il décrit un état de choc et d’incrédulité face à la sentence (chapitre 1)."
+                        },
+                        {
+                            question: "Pourquoi décide-t-il d’écrire ?",
+                            options: [
+                                "Pour demander grâce",
+                                "Pour témoigner de son expérience",
+                                "Pour écrire un roman",
+                                "Pour ses enfants"
+                            ],
+                            correctAnswer: "Pour témoigner de son expérience",
+                            explanation: "Il veut que son récit serve à d’autres, comme un plaidoyer contre la peine de mort."
+                        },
+                        {
+                            question: "Que ressent-il dans sa cellule (chapitre 2) ?",
+                            options: [
+                                "De la joie",
+                                "Une angoisse insupportable",
+                                "De l’indifférence",
+                                "De la colère contre Dieu"
+                            ],
+                            correctAnswer: "Une angoisse insupportable",
+                            explanation: "Il décrit l’horreur de l’attente et la présence constante de la mort."
+                        },
+                        {
+                            question: "Que voit-il sur les murs de sa cellule ?",
+                            options: [
+                                "Des peintures colorées",
+                                "Des inscriptions de condamnés",
+                                "Des portraits de juges",
+                                "Des messages d’espoir"
+                            ],
+                            correctAnswer: "Des inscriptions de condamnés",
+                            explanation: "Les graffitis des anciens prisonniers renforcent son sentiment d’appartenance à une chaîne de souffrance."
+                        },
+                        {
+                            question: "Quel bruit le trouble particulièrement ?",
+                            options: [
+                                "Les rires des gardes",
+                                "Le chant des oiseaux",
+                                "Les chaînes des prisonniers",
+                                "Une cloche d’église"
+                            ],
+                            correctAnswer: "Les chaînes des prisonniers",
+                            explanation: "Le bruit des fers symbolise l’enfermement et la mort prochaine (chapitre 3)."
+                        },
+                        {
+                            question: "Que pense-t-il de sa vie passée (chapitre 4) ?",
+                            options: [
+                                "Elle était misérable",
+                                "Elle était pleine de bonheur",
+                                "Elle n’a plus d’importance",
+                                "Elle était criminelle"
+                            ],
+                            correctAnswer: "Elle était pleine de bonheur",
+                            explanation: "Il évoque avec nostalgie une vie simple et heureuse avant sa condamnation."
+                        },
+                        {
+                            question: "Quel est son crime selon le texte ?",
+                            options: [
+                                "Un vol",
+                                "Un meurtre",
+                                "Une trahison",
+                                "Il reste inconnu"
+                            ],
+                            correctAnswer: "Il reste inconnu",
+                            explanation: "Hugo ne précise pas le crime, rendant le narrateur universel et son sort plus poignant."
+                        },
+                        {
+                            question: "Quel est l’effet de ces chapitres sur le lecteur ?",
+                            options: [
+                                "L’ennui",
+                                "Une plongée dans l’angoisse du narrateur",
+                                "Un espoir de rédemption",
+                                "Une critique des juges"
+                            ],
+                            correctAnswer: "Une plongée dans l’angoisse du narrateur",
+                            explanation: "L’immersion dans ses pensées crée une tension immédiate et une empathie."
+                        }
+                    ]
+                }
+                // Ajoutez les sections 2 à 10 ici
+            ]
+        };
+        startQuiz(quizData, "Les Derniers Jours d’un Condamné");
+    </script>
 </body>
 </html>
