@@ -3,344 +3,151 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz - La Boîte à Merveilles (Fiche Technique, Style et Chapitres 1-3)</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f4f4f4;
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-        h2 {
-            color: #0066cc;
-        }
-        .chapter {
-            margin-bottom: 30px;
-            padding: 15px;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .question {
-            margin: 10px 0;
-        }
-        .answer {
-            color: #006600;
-            font-weight: bold;
-        }
-        .explanation {
-            font-style: italic;
-            color: #555;
-        }
-    </style>
+    <title>Quiz - La Boîte à Merveilles</title>
+    <link rel="stylesheet" href="quiz.css">
 </head>
 <body>
-    <h1>Quiz - La Boîte à Merveilles d'Ahmed Sefrioui</h1>
-    <p style="text-align: center;">Conçu pour les élèves de 1ère année Bac - Fiche Technique, Style et Chapitres 1 à 3</p>
-
-    <!-- Fiche Technique et Style du Roman -->
-    <div class="chapter">
-        <h2>Fiche Technique et Style du Roman</h2>
-        
-        <div class="question">
-            <p>1. Qui est l’auteur de *La Boîte à Merveilles* ?</p>
-            <p>a) Mohammed Aziz Lahbabi - b) Ahmed Sefrioui - c) Driss Chraïbi - d) Tahar Ben Jelloun</p>
-            <p class="answer">Réponse : b) Ahmed Sefrioui</p>
-            <p class="explanation">Explication : Ahmed Sefrioui est l’auteur de ce roman, publié en 1954, considéré comme une œuvre majeure de la littérature marocaine francophone.</p>
+    <div class="container">
+        <h1>Quiz - La Boîte à Merveilles</h1>
+        <select id="chapter-select"></select>
+        <div id="quiz-info">
+            <p>Œuvre : <span id="book-title"></span></p>
+            <p>Chapitre : <span id="chapter-title"></span></p>
+            <p>Question <span id="question-number"></span> / <span id="total-questions"></span></p>
+            <p>Score : <span id="score">0</span></p>
         </div>
-
-        <div class="question">
-            <p>2. En quelle année *La Boîte à Merveilles* a-t-elle été publiée ?</p>
-            <p>a) 1945 - b) 1954 - c) 1960 - d) 1970</p>
-            <p class="answer">Réponse : b) 1954</p>
-            <p class="explanation">Explication : Le roman est paru en 1954, dans une période où la littérature maghrébine francophone commençait à s’affirmer.</p>
+        <div id="question-container">
+            <h2 id="question-text"></h2>
+            <ul id="options-list"></ul>
+            <button id="submit-btn" disabled>Soumettre</button>
+            <button id="next-btn" disabled>Question suivante</button>
         </div>
-
-        <div class="question">
-            <p>3. Quel est le genre littéraire de *La Boîte à Merveilles* ?</p>
-            <p>a) Roman policier - b) Roman autobiographique - c) Roman historique - d) Roman fantastique</p>
-            <p class="answer">Réponse : b) Roman autobiographique</p>
-            <p class="explanation">Explication : Le roman est inspiré de l’enfance de Sefrioui à Fès, ce qui en fait une œuvre autobiographique teintée de fiction.</p>
-        </div>
-
-        <div class="question">
-            <p>4. Dans quelle ville se déroule l’histoire ?</p>
-            <p>a) Casablanca - b) Marrakech - c) Fès - d) Rabat</p>
-            <p class="answer">Réponse : c) Fès</p>
-            <p class="explanation">Explication : Fès est le cadre principal, une médina riche en traditions et en détails que Sefrioui décrit avec précision.</p>
-        </div>
-
-        <div class="question">
-            <p>5. Quel est le thème principal du roman ?</p>
-            <p>a) La guerre - b) L’enfance et la nostalgie - c) La politique - d) L’amour</p>
-            <p class="answer">Réponse : b) L’enfance et la nostalgie</p>
-            <p class="explanation">Explication : Le roman explore les souvenirs d’enfance de Sidi Mohamed, mêlés de nostalgie et d’innocence face à un monde adulte complexe.</p>
-        </div>
-
-        <div class="question">
-            <p>6. Quel style narratif domine dans le roman ?</p>
-            <p>a) Narratif objectif - b) Narratif poétique - c) Narratif satirique - d) Narratif dramatique</p>
-            <p class="answer">Réponse : b) Narratif poétique</p>
-            <p class="explanation">Explication : Sefrioui utilise un style descriptif et poétique, riche en images et en métaphores, pour évoquer la médina et ses souvenirs.</p>
-        </div>
-
-        <div class="question">
-            <p>7. À quelle personne le récit est-il narré ?</p>
-            <p>a) 3ème personne - b) 1ère personne - c) 2ème personne - d) Alternance de personnes</p>
-            <p class="answer">Réponse : b) 1ère personne</p>
-            <p class="explanation">Explication : Le narrateur, Sidi Mohamed adulte, raconte ses souvenirs à la première personne, renforçant l’aspect autobiographique.</p>
-        </div>
-
-        <div class="question">
-            <p>8. Quel est un des objectifs de Sefrioui dans ce roman ?</p>
-            <p>a) Critiquer la société - b) Préserver le patrimoine culturel - c) Raconter une intrigue policière - d) Promouvoir la modernité</p>
-            <p class="answer">Réponse : b) Préserver le patrimoine culturel</p>
-            <p class="explanation">Explication : À travers les descriptions de la médina et des traditions, Sefrioui valorise la culture marocaine traditionnelle.</p>
-        </div>
-
-        <div class="question">
-            <p>9. Quelle figure de style Sefrioui utilise-t-il souvent ?</p>
-            <p>a) L’ironie - b) La métaphore - c) L’hyperbole - d) Le sarcasme</p>
-            <p class="answer">Réponse : b) La métaphore</p>
-            <p class="explanation">Explication : Les métaphores abondent pour décrire les lieux et les émotions, comme la boîte à merveilles comparée à un trésor imaginaire.</p>
-        </div>
-
-        <div class="question">
-            <p>10. Quelle est la tonalité générale du roman ?</p>
-            <p>a) Tragique - b) Humoristique - c) Nostalgique - d) Critique</p>
-            <p class="answer">Réponse : c) Nostalgique</p>
-            <p class="explanation">Explication : Le ton est empreint de nostalgie, le narrateur adulte revisitant son passé avec tendresse et mélancolie.</p>
-        </div>
+        <div id="feedback"></div>
+        <a href="index.html" class="book-link">Retour à l’accueil</a>
     </div>
-
-    <!-- Chapitre 1 -->
-    <div class="chapter">
-        <h2>Chapitre 1 : Dar Chouafa</h2>
-        
-        <div class="question">
-            <p>1. Quel sentiment domine le narrateur adulte au début du chapitre ?</p>
-            <p>a) La joie - b) La solitude - c) La colère - d) L’espoir</p>
-            <p class="answer">Réponse : b) La solitude</p>
-            <p class="explanation">Explication : Le narrateur adulte commence le récit en évoquant sa solitude pesante, disant qu’il ne dort pas alors que tous dorment, ce qui reflète son isolement.</p>
-        </div>
-
-        <div class="question">
-            <p>2. Quel âge a Sidi Mohamed enfant dans ce chapitre ?</p>
-            <p>a) 5 ans - b) 6 ans - c) 7 ans - d) 8 ans</p>
-            <p class="answer">Réponse : b) 6 ans</p>
-            <p class="explanation">Explication : Le texte précise que Sidi Mohamed avait « peut-être six ans », marquant le début de ses souvenirs d’enfance.</p>
-        </div>
-
-        <div class="question">
-            <p>3. Pourquoi la maison s’appelle-t-elle Dar Chouafa ?</p>
-            <p>a) À cause d’un tisserand - b) À cause d’une voyante - c) À cause d’un épicier - d) À cause d’un fqih</p>
-            <p class="answer">Réponse : b) À cause d’une voyante</p>
-            <p class="explanation">Explication : Dar Chouafa signifie « maison de la voyante » en raison de Kenza, la voyante qui y habite et y pratique ses rituels.</p>
-        </div>
-
-        <div class="question">
-            <p>4. Que fait Sidi Mohamed pour tromper sa solitude ?</p>
-            <p>a) Il joue avec ses amis - b) Il sort sa boîte à merveilles - c) Il lit le Coran - d) Il aide sa mère</p>
-            <p class="answer">Réponse : b) Il sort sa boîte à merveilles</p>
-            <p class="explanation">Explication : La boîte à merveilles est son refuge, un moyen d’échapper à sa solitude en explorant ses trésors imaginaires.</p>
-        </div>
-
-        <div class="question">
-            <p>5. Qui est Abdallah dans ce chapitre ?</p>
-            <p>a) Un fqih - b) Un voisin - c) Un épicier - d) Un tisserand</p>
-            <p class="answer">Réponse : c) Un épicier</p>
-            <p class="explanation">Explication : Abdallah est l’épicier qui raconte des histoires, initiant Sidi Mohamed au monde invisible.</p>
-        </div>
-
-        <div class="question">
-            <p>6. Quel est le rôle de la voyante dans Dar Chouafa ?</p>
-            <p>a) Elle cuisine - b) Elle organise des rituels - c) Elle enseigne - d) Elle vend des objets</p>
-            <p class="answer">Réponse : b) Elle organise des rituels</p>
-            <p class="explanation">Explication : Kenza, la voyante, organise des séances mensuelles avec les Gnaouas, observées par Sidi Mohamed depuis l’étage.</p>
-        </div>
-
-        <div class="question">
-            <p>7. Comment Sidi Mohamed perçoit-il le bain maure ?</p>
-            <p>a) Comme un lieu agréable - b) Comme un enfer - c) Comme un lieu de repos - d) Comme une école</p>
-            <p class="answer">Réponse : b) Comme un enfer</p>
-            <p class="explanation">Explication : Il décrit le bain comme un endroit oppressant où il se sent encore plus seul, loin de ses plaisirs enfantins.</p>
-        </div>
-
-        <div class="question">
-            <p>8. Que reçoit Sidi Mohamed de Rahma ?</p>
-            <p>a) Un gâteau - b) Un jouet - c) Un cabochon en verre - d) Un livre</p>
-            <p class="answer">Réponse : c) Un cabochon en verre</p>
-            <p class="explanation">Explication : Rahma lui offre un cabochon en verre qu’il ajoute à sa boîte à merveilles, renforçant son attachement à cet objet.</p>
-        </div>
-
-        <div class="question">
-            <p>9. Quel est le métier du père de Sidi Mohamed ?</p>
-            <p>a) Épicier - b) Tisserand - c) Fqih - d) Marchand</p>
-            <p class="answer">Réponse : b) Tisserand</p>
-            <p class="explanation">Explication : Maalem Abdeslam est un tisserand, assisté de son apprenti Driss le Teigneux.</p>
-        </div>
-
-        <div class="question">
-            <p>10. Quelle est la réaction de la mère après le bain maure ?</p>
-            <p>a) Elle pleure - b) Elle raconte des histoires - c) Elle dort - d) Elle cuisine</p>
-            <p class="answer">Réponse : b) Elle raconte des histoires</p>
-            <p class="explanation">Explication : Lalla Zoubida partage les potins du bain avec ses voisines, mettant en avant ses talents de conteuse.</p>
-        </div>
-    </div>
-
-    <!-- Chapitre 2 -->
-    <div class="chapter">
-        <h2>Chapitre 2 : Le Msid et la vie quotidienne</h2>
-
-        <div class="question">
-            <p>1. Où se trouve le Msid fréquenté par Sidi Mohamed ?</p>
-            <p>a) À Dar Chouafa - b) À la porte de Derb Noualla - c) À Rsif - d) À Moulay Driss</p>
-            <p class="answer">Réponse : b) À la porte de Derb Noualla</p>
-            <p class="explanation">Explication : Le Msid est situé près de la porte de Derb Noualla, un lieu clé de son quotidien.</p>
-        </div>
-
-        <div class="question">
-            <p>2. Quel jour Sidi Mohamed ne va-t-il pas au Msid ?</p>
-            <p>a) Lundi - b) Mardi - c) Jeudi - d) Vendredi</p>
-            <p class="answer">Réponse : c) Jeudi</p>
-            <p class="explanation">Explication : Le jeudi est un jour de repos, selon les conseils de son père, ce qui lui permet de rester à la maison.</p>
-        </div>
-
-        <div class="question">
-            <p>3. Qui est Driss le Teigneux ?</p>
-            <p>a) Un voisin - b) Un apprenti - c) Un fqih - d) Un marchand</p>
-            <p class="answer">Réponse : b) Un apprenti</p>
-            <p class="explanation">Explication : Driss le Teigneux est l’apprenti du père de Sidi Mohamed, chargé des courses pour la famille.</p>
-        </div>
-
-        <div class="question">
-            <p>4. Que fait Sidi Mohamed lorsqu’il ne va pas au Msid ?</p>
-            <p>a) Il joue dans le derb - b) Il dort - c) Il lit - d) Il aide son père</p>
-            <p class="answer">Réponse : a) Il joue dans le derb</p>
-            <p class="explanation">Explication : Il passe son temps à courir dans le derb ou à explorer sa boîte à merveilles, cherchant à s’occuper.</p>
-        </div>
-
-        <div class="question">
-            <p>5. Qui apporte des beignets à Sidi Mohamed ?</p>
-            <p>a) Rahma - b) Fatma Bziouiya - c) Lalla Zoubida - d) Kenza</p>
-            <p class="answer">Réponse : b) Fatma Bziouiya</p>
-            <p class="explanation">Explication : Fatma Bziouiya, une voisine, lui offre deux beignets, signe de la solidarité entre locataires.</p>
-        </div>
-
-        <div class="question">
-            <p>6. Quel est le rôle de Lalla Zoubida le matin ?</p>
-            <p>a) Elle cuisine - b) Elle se lève tard - c) Elle va au marché - d) Elle enseigne</p>
-            <p class="answer">Réponse : b) Elle se lève tard</p>
-            <p class="explanation">Explication : Lalla Zoubida est la dernière à se lever après Rahma et Kenza, marquant le rythme de la maison.</p>
-        </div>
-
-        <div class="question">
-            <p>7. Que représente la boîte à merveilles pour Sidi Mohamed ?</p>
-            <p>a) Un jouet - b) Un refuge - c) Un cadeau - d) Un souvenir</p>
-            <p class="answer">Réponse : b) Un refuge</p>
-            <p class="explanation">Explication : La boîte est un espace imaginaire où il échappe à sa solitude et à l’ennui.</p>
-        </div>
-
-        <div class="question">
-            <p>8. Où Sidi Mohamed range-t-il le cabochon en verre ?</p>
-            <p>a) Dans sa poche - b) Dans la cuisine - c) Dans sa boîte à merveilles - d) Sur la terrasse</p>
-            <p class="answer">Réponse : c) Dans sa boîte à merveilles</p>
-            <p class="explanation">Explication : Il y conserve ses trésors, dont le cabochon offert par Rahma.</p>
-        </div>
-
-        <div class="question">
-            <p>9. Comment Sidi Mohamed perçoit-il le fqih ?</p>
-            <p>a) Comme un ami - b) Comme un guide - c) Comme une autorité sévère - d) Comme un conteur</p>
-            <p class="answer">Réponse : c) Comme une autorité sévère</p>
-            <p class="explanation">Explication : Le fqih représente une figure imposante au Msid, contrastant avec la liberté qu’il préfère.</p>
-        </div>
-
-        <div class="question">
-            <p>10. Quelle activité préfère Sidi Mohamed au bain maure ?</p>
-            <p>a) Jouer dans le derb - b) Aller au Msid - c) Aider sa mère - d) Dormir</p>
-            <p class="answer">Réponse : a) Jouer dans le derb</p>
-            <p class="explanation">Explication : Il préfère les jeux libres dans le derb au bain maure, qu’il déteste.</p>
-        </div>
-    </div>
-
-    <!-- Chapitre 3 -->
-    <div class="chapter">
-        <h2>Chapitre 3 : La dispute</h2>
-
-        <div class="question">
-            <p>1. Quel est le sujet de la dispute entre Lalla Zoubida et Rahma ?</p>
-            <p>a) La cuisine - b) La lessive - c) Les enfants - d) Le bruit</p>
-            <p class="answer">Réponse : b) La lessive</p>
-            <p class="explanation">Explication : La dispute éclate à cause d’un problème d’espace lors de la lessive sur la terrasse commune.</p>
-        </div>
-
-        <div class="question">
-            <p>2. Où se déroule la dispute ?</p>
-            <p>a) Dans la cuisine - b) Sur la terrasse - c) Au Msid - d) Dans la rue</p>
-            <p class="answer">Réponse : b) Sur la terrasse</p>
-            <p class="explanation">Explication : La terrasse est l’espace partagé où les tensions autour de la lessive surgissent.</p>
-        </div>
-
-        <div class="question">
-            <p>3. Quelle est la réaction de Maalem Abdeslam face à la dispute ?</p>
-            <p>a) Il rit - b) Il se fâche - c) Il reste calme - d) Il part</p>
-            <p class="answer">Réponse : c) Il reste calme</p>
-            <p class="explanation">Explication : Il écoute le récit de sa femme sans s’énerver, montrant une certaine retenue.</p>
-        </div>
-
-        <div class="question">
-            <p>4. Que fait Lalla Zoubida après la dispute ?</p>
-            <p>a) Elle pleure - b) Elle raconte l’incident - c) Elle cuisine - d) Elle dort</p>
-            <p class="answer">Réponse : b) Elle raconte l’incident</p>
-            <p class="explanation">Explication : Elle dramatise l’événement en le racontant à son mari avec passion.</p>
-        </div>
-
-        <div class="question">
-            <p>5. Comment Lalla Zoubida est-elle décrite dans ce chapitre ?</p>
-            <p>a) Silencieuse - b) Dramatiseuse - c) Calme - d) Travailleuse</p>
-            <p class="answer">Réponse : b) Dramatiseuse</p>
-            <p class="explanation">Explication : Elle exagère les incidents, passant du rire aux larmes, comme le note le narrateur.</p>
-        </div>
-
-        <div class="question">
-            <p>6. Quel jour la dispute a-t-elle lieu ?</p>
-            <p>a) Lundi - b) Mardi - c) Mercredi - d) Jeudi</p>
-            <p class="answer">Réponse : b) Mardi</p>
-            <p class="explanation">Explication : Le texte mentionne que c’était un mardi, jour lié à la révision au Msid.</p>
-        </div>
-
-        <div class="question">
-            <p>7. Que représente la lessive dans ce chapitre ?</p>
-            <p>a) Une corvée - b) Une source de conflit - c) Un moment de détente - d) Une tradition</p>
-            <p class="answer">Réponse : b) Une source de conflit</p>
-            <p class="explanation">Explication : La lessive devient un prétexte pour révéler les tensions entre voisines.</p>
-        </div>
-
-        <div class="question">
-            <p>8. Qui est témoin de la dispute ?</p>
-            <p>a) Sidi Mohamed - b) Driss le Teigneux - c) Kenza - d) Fatma Bziouiya</p>
-            <p class="answer">Réponse : a) Sidi Mohamed</p>
-            <p class="explanation">Explication : Enfant, il observe les événements, ce qui enrichit sa narration.</p>
-        </div>
-
-        <div class="question">
-            <p>9. Quelle est l’origine de Lalla Zoubida selon elle ?</p>
-            <p>a) Montagnarde - b) Fassie - c) Rurale - d) Nomade</p>
-            <p class="answer">Réponse : b) Fassie</p>
-            <p class="explanation">Explication : Elle revendique avec fierté son origine fassie, liée à la ville de Fès.</p>
-        </div>
-
-        <div class="question">
-            <p>10. Quel est le ton du narrateur dans ce chapitre ?</p>
-            <p>a) Triste - b) Ironique - c) Nostalgique - d) Joyeux</p>
-            <p class="answer">Réponse : c) Nostalgique</p>
-            <p class="explanation">Explication : Le narrateur adulte relate ces souvenirs avec une tendresse mêlée de distance.</p>
-        </div>
-    </div>
-
-    <p style="text-align: center;">Pour ajouter d'autres chapitres, insérez une nouvelle section <div class="chapter"> ici.</p>
+    <script src="quiz.js"></script>
+    <script>
+        const quizData = {
+            chapters: [
+                {
+                    chapter: "Chapitre 1",
+                    questions: [
+                        {
+                            question: "Pourquoi le narrateur, Sidi Mohammed, dit-il qu’il ne dort pas au début du roman ?",
+                            options: [
+                                "Parce qu’il a peur des cauchemars",
+                                "Parce qu’il pense à sa solitude",
+                                "Parce qu’il écoute les bruits de la maison",
+                                "Parce qu’il joue avec sa boîte à merveilles"
+                            ],
+                            correctAnswer: "Parce qu’il pense à sa solitude",
+                            explanation: "Le roman s’ouvre avec : « Moi, je ne dors pas. Je songe à ma solitude et j’en sens tout le poids. » Cela établit dès le départ le thème de la solitude qui hante le narrateur."
+                        },
+                        {
+                            question: "Que contient la boîte à merveilles du narrateur ?",
+                            options: [
+                                "Des jouets neufs achetés par ses parents",
+                                "Des objets précieux comme de l’or et des bijoux",
+                                "Des objets divers et hétéroclites qu’il collectionne",
+                                "Des livres et des crayons pour l’école"
+                            ],
+                            correctAnswer: "Des objets divers et hétéroclites qu’il collectionne",
+                            explanation: "La boîte contient des objets comme « des boules de verre, des anneaux de cuivre, un minuscule cadenas sans clef », symboles de l’imagination de Sidi Mohammed."
+                        },
+                        {
+                            question: "Où vit le narrateur avec sa famille ?",
+                            options: [
+                                "Dans une maison isolée à la campagne",
+                                "Au deuxième étage de Dar Chouafa",
+                                "Dans une grande villa moderne",
+                                "Chez ses grands-parents"
+                            ],
+                            correctAnswer: "Au deuxième étage de Dar Chouafa",
+                            explanation: "La famille de Sidi Mohammed occupe le deuxième étage de Dar Chouafa, une maison partagée avec d’autres locataires."
+                        },
+                        {
+                            question: "Quel est le rôle de Lalla Kenza dans Dar Chouafa ?",
+                            options: [
+                                "Elle est la propriétaire de la maison",
+                                "Elle est une voyante (chouafa)",
+                                "Elle est la femme de ménage",
+                                "Elle est l’amie de la mère du narrateur"
+                            ],
+                            correctAnswer: "Elle est une voyante (chouafa)",
+                            explanation: "Lalla Kenza, au rez-de-chaussée, est une chouafa, une figure mystique qui reflète les croyances populaires marocaines."
+                        },
+                        {
+                            question: "Comment le narrateur perçoit-il le bain maure ?",
+                            options: [
+                                "Comme un lieu de détente et de plaisir",
+                                "Comme une expérience effrayante et désagréable",
+                                "Comme une aventure excitante",
+                                "Comme un endroit où il rencontre ses amis"
+                            ],
+                            correctAnswer: "Comme une expérience effrayante et désagréable",
+                            explanation: "Sidi Mohammed décrit le bain avec des images de chaleur suffocante et de cris, montrant son dégoût."
+                        },
+                        {
+                            question: "Qui est le père du narrateur ?",
+                            options: [
+                                "Un riche commerçant de Fès",
+                                "Un homme simple d’origine montagnarde",
+                                "Un fqih (maître d’école coranique)",
+                                "Un voisin de Dar Chouafa"
+                            ],
+                            correctAnswer: "Un homme simple d’origine montagnarde",
+                            explanation: "Le père, Moulay Abdeslam, est un homme modeste, originaire des montagnes, qui travaille comme tisserand."
+                        },
+                        {
+                            question: "Quel est le métier du père du narrateur ?",
+                            options: [
+                                "Marchand de légumes",
+                                "Tisserand",
+                                "Fabricant de charrues",
+                                "Voyant"
+                            ],
+                            correctAnswer: "Tisserand",
+                            explanation: "Moulay Abdeslam gagne sa vie en tissant, un métier artisanal typique de l’époque décrite."
+                        },
+                        {
+                            question: "Qui vit au premier étage de Dar Chouafa ?",
+                            options: [
+                                "Lalla Kenza",
+                                "La famille de Driss El Aouad",
+                                "La famille du narrateur",
+                                "Un marchand riche"
+                            ],
+                            correctAnswer: "La famille de Driss El Aouad",
+                            explanation: "Driss El Aouad, sa femme Rahma et leur fille Zineb occupent le premier étage."
+                        },
+                        {
+                            question: "Que ressent le narrateur face à sa boîte à merveilles ?",
+                            options: [
+                                "De l’indifférence",
+                                "Une fascination et un réconfort",
+                                "De la peur",
+                                "De la colère"
+                            ],
+                            correctAnswer: "Une fascination et un réconfort",
+                            explanation: "La boîte est un refuge pour Sidi Mohammed, un moyen d’échapper à sa solitude et à ses peurs."
+                        },
+                        {
+                            question: "Quel est l’âge du narrateur au début du roman ?",
+                            options: [
+                                "4 ans",
+                                "6 ans",
+                                "10 ans",
+                                "12 ans"
+                            ],
+                            correctAnswer: "6 ans",
+                            explanation: "Sidi Mohammed précise qu’il a 6 ans, un âge où il commence à observer et à réfléchir sur le monde qui l’entoure."
+                        }
+                    ]
+                }
+                // Ajoutez les chapitres 2 à 12 ici
+            ]
+        };
+        startQuiz(quizData, "La Boîte à Merveilles");
+    </script>
 </body>
 </html>
