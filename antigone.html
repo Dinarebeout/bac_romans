@@ -1,38 +1,153 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>QCM - Antigone</title>
-  <link rel="stylesheet" href="quiz.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - Antigone</title>
+    <link rel="stylesheet" href="quiz.css">
 </head>
 <body>
-  <div class="container">
-    <h1>QCM Complet - Antigone</h1>
-    
-    <!-- Section 1 (Début) -->
-    <h2>Section 1</h2>
-    <div class="question">
-      <p>1. Pourquoi Antigone veut-elle enterrer son frère ?</p>
-      <input type="radio" name="qa1-1" value="a"> a) Pour gagner la guerre<br>
-      <input type="radio" name="qa1-1" value="b"> b) Par devoir moral et religieux<br>
-      <input type="radio" name="qa1-1" value="c"> c) Pour défier Créon ouvertement<br>
-      <button onclick="checkAnswer('qa1-1', 'b')">Soumettre</button>
-      <p id="result-qa1-1"></p>
+    <div class="container">
+        <h1>Quiz - Antigone</h1>
+        <select id="chapter-select"></select>
+        <div id="quiz-info">
+            <p>Œuvre : <span id="book-title"></span></p>
+            <p>Section : <span id="chapter-title"></span></p>
+            <p>Question <span id="question-number"></span> / <span id="total-questions"></span></p>
+            <p>Score : <span id="score">0</span></p>
+        </div>
+        <div id="question-container">
+            <h2 id="question-text"></h2>
+            <ul id="options-list"></ul>
+            <button id="submit-btn" disabled>Soumettre</button>
+            <button id="next-btn" disabled>Question suivante</button>
+        </div>
+        <div id="feedback"></div>
+        <a href="index.html" class="book-link">Retour à l’accueil</a>
     </div>
-    <!-- Ajoute 9 autres questions -->
-
-    <!-- Section 2 -->
-    <h2>Section 2</h2>
-    <div class="question">
-      <p>1. Que représente Créon dans l’œuvre ?</p>
-      <input type="radio" name="qa2-1" value="a"> a) L’amour<br>
-      <input type="radio" name="qa2-1" value="b"> b) L’ordre et la loi<br>
-      <input type="radio" name="qa2-1" value="c"> c) La liberté<br>
-      <button onclick="checkAnswer('qa2-1', 'b')">Soumettre</button>
-      <p id="result-qa2-1"></p>
-    </div>
-    <!-- Ajoute 9 autres questions -->
-  </div>
-  <script src="quiz.js"></script>
+    <script src="quiz.js"></script>
+    <script>
+        const quizData = {
+            chapters: [
+                {
+                    chapter: "Section 1 : Le Prologue",
+                    questions: [
+                        {
+                            question: "Quel est le rôle du Prologue au début de la pièce ?",
+                            options: [
+                                "Raconter une histoire comique",
+                                "Présenter les personnages et annoncer leur destin",
+                                "Décrire le palais de Thèbes",
+                                "Chanter une chanson"
+                            ],
+                            correctAnswer: "Présenter les personnages et annoncer leur destin",
+                            explanation: "Le Prologue introduit les personnages (Antigone, Créon, Hémon, etc.) et révèle dès le départ l’issue tragique, préparant le public à l’inéluctabilité du drame."
+                        },
+                        {
+                            question: "Comment le Prologue décrit-il Antigone ?",
+                            options: [
+                                "Comme une femme joyeuse et insouciante",
+                                "Comme une fille frêle mais déterminée",
+                                "Comme une reine puissante",
+                                "Comme une vieille femme sage"
+                            ],
+                            correctAnswer: "Comme une fille frêle mais déterminée",
+                            explanation: "Antigone est décrite comme petite et fragile physiquement, mais avec une volonté inflexible, ce qui annonce son caractère central."
+                        },
+                        {
+                            question: "Que dit le Prologue sur Créon ?",
+                            options: [
+                                "Il est un roi cruel dès le départ",
+                                "Il est un homme ordinaire devenu roi par nécessité",
+                                "Il est un dieu immortel",
+                                "Il est un marchand riche"
+                            ],
+                            correctAnswer: "Il est un homme ordinaire devenu roi par nécessité",
+                            explanation: "Créon est présenté comme un homme pragmatique, poussé au pouvoir par les circonstances, contrastant avec l’idéalisme d’Antigone."
+                        },
+                        {
+                            question: "Quel événement passé est mentionné par le Prologue ?",
+                            options: [
+                                "La naissance d’Antigone",
+                                "La mort des frères d’Antigone, Étéocle et Polynice",
+                                "Le mariage de Créon",
+                                "Une guerre contre Sparte"
+                            ],
+                            correctAnswer: "La mort des frères d’Antigone, Étéocle et Polynice",
+                            explanation: "Le Prologue rappelle que les deux frères se sont entretués, déclenchant le conflit autour de leur sépulture."
+                        },
+                        {
+                            question: "Pourquoi le Prologue annonce-t-il la mort d’Antigone ?",
+                            options: [
+                                "Pour surprendre le public",
+                                "Pour souligner l’inéluctabilité de la tragédie",
+                                "Pour critiquer Créon",
+                                "Pour faire rire"
+                            ],
+                            correctAnswer: "Pour souligner l’inéluctabilité de la tragédie",
+                            explanation: "En révélant le destin, le Prologue met l’accent sur le tragique inévitable, typique de la tragédie grecque revisitée."
+                        },
+                        {
+                            question: "Comment le Prologue décrit-il Hémon ?",
+                            options: [
+                                "Comme un guerrier brutal",
+                                "Comme le fiancé d’Antigone, jeune et amoureux",
+                                "Comme un traître",
+                                "Comme un vieil homme sage"
+                            ],
+                            correctAnswer: "Comme le fiancé d’Antigone, jeune et amoureux",
+                            explanation: "Hémon est présenté comme un jeune homme épris d’Antigone, annonçant son rôle dans le drame."
+                        },
+                        {
+                            question: "Quel est le ton du Prologue ?",
+                            options: [
+                                "Joyeux et optimiste",
+                                "Détaché et ironique",
+                                "Furieux et accusateur",
+                                "Triste et larmoyant"
+                            ],
+                            correctAnswer: "Détaché et ironique",
+                            explanation: "Le Prologue adopte un ton distant et légèrement ironique, comme s’il commentait un jeu dont l’issue est connue."
+                        },
+                        {
+                            question: "Que représente Ismène selon le Prologue ?",
+                            options: [
+                                "Une rebelle comme Antigone",
+                                "La sœur raisonnable et conformiste",
+                                "Une reine ambitieuse",
+                                "Une servante fidèle"
+                            ],
+                            correctAnswer: "La sœur raisonnable et conformiste",
+                            explanation: "Ismène est décrite comme plus prudente et soumise que sa sœur, établissant un contraste avec Antigone."
+                        },
+                        {
+                            question: "Quel est le décor mentionné par le Prologue ?",
+                            options: [
+                                "Une forêt sombre",
+                                "Un palais simple et intemporel",
+                                "Une plage ensoleillée",
+                                "Une ville en ruines"
+                            ],
+                            correctAnswer: "Un palais simple et intemporel",
+                            explanation: "Le décor est minimaliste et abstrait, sans détails historiques précis, pour universaliser l’histoire."
+                        },
+                        {
+                            question: "Pourquoi le Prologue compare-t-il la tragédie à une machine ?",
+                            options: [
+                                "Pour montrer qu’elle est compliquée",
+                                "Pour illustrer son mécanisme inéluctable",
+                                "Pour critiquer les personnages",
+                                "Pour parler de technologie"
+                            ],
+                            correctAnswer: "Pour illustrer son mécanisme inéluctable",
+                            explanation: "L’image de la machine suggère que la tragédie, une fois lancée, suit un cours implacable jusqu’à la fin."
+                        }
+                    ]
+                }
+                // Ajoutez les sections 2 à 10 ici
+            ]
+        };
+        startQuiz(quizData, "Antigone");
+    </script>
 </body>
 </html>
