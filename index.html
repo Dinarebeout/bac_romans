@@ -1,21 +1,183 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Littéraire - Accueil</title>
-    <link rel="stylesheet" href="quiz.css">
+    <title>Quiz Littéraire</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+
+        .header {
+            text-align: center;
+            padding: 20px;
+            background-color: #2c3e50;
+            color: white;
+            border-radius: 10px;
+        }
+
+        .quiz-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-top: 20px;
+        }
+
+        .question {
+            margin-bottom: 20px;
+        }
+
+        .options {
+            margin: 10px 0;
+        }
+
+        .option {
+            margin: 5px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .option:hover {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .correct { background-color: #2ecc71 !important; }
+        .incorrect { background-color: #e74c3c !important; }
+
+        .score {
+            text-align: center;
+            font-size: 1.2em;
+            margin: 20px 0;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #3498db;
+            color: white;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Quiz Littéraire</h1>
-        <p>Bienvenue ! Choisissez une œuvre pour commencer le quiz :</p>
-        <div class="selection">
-            <a href="boite.html" class="book-link">La Boîte à Merveilles</a>
-            <a href="antigone.html" class="book-link">Antigone</a>
-            <a href="condamne.html" class="book-link">Les Derniers Jours d’un Condamné</a>
+    <div class="header">
+        <h1>Quiz sur La Boîte à Merveilles</h1>
+        <p>Testez vos connaissances sur le roman d'Ahmed Sefrioui</p>
+    </div>
+
+    <div class="quiz-container">
+        <div id="question-container" class="question"></div>
+        <div id="options-container" class="options"></div>
+        <div class="score" id="score">Score: 0</div>
+        <div class="navigation">
+            <button onclick="previousQuestion()" id="prev-btn">Précédent</button>
+            <button onclick="nextQuestion()" id="next-btn">Suivant</button>
         </div>
     </div>
+
+    <script>
+        // Questions pour le chapitre 1 (ajouter les autres chapitres de la même manière)
+        const questions = [
+            {
+                chapter: 1,
+                question: "Pourquoi le narrateur, Sidi Mohammed, dit-il qu’il ne dort pas au début du roman ?",
+                options: [
+                    "a) Parce qu’il a peur des cauchemars",
+                    "b) Parce qu’il pense à sa solitude",
+                    "c) Parce qu’il écoute les bruits de la maison",
+                    "d) Parce qu’il joue avec sa boîte à merveilles"
+                ],
+                correct: 1,
+                explanation: "Le roman s’ouvre avec : « Moi, je ne dors pas. Je songe à ma solitude et j’en sens tout le poids. »"
+            },
+            // Ajouter les autres questions ici...
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        const questionContainer = document.getElementById('question-container');
+        const optionsContainer = document.getElementById('options-container');
+        const scoreElement = document.getElementById('score');
+
+        function showQuestion() {
+            const q = questions[currentQuestion];
+            questionContainer.innerHTML = `
+                <h3>Chapitre ${q.chapter}</h3>
+                <p>${q.question}</p>
+            `;
+
+            optionsContainer.innerHTML = '';
+            q.options.forEach((option, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.className = 'option';
+                optionElement.innerHTML = option;
+                optionElement.onclick = () => checkAnswer(index);
+                optionsContainer.appendChild(optionElement);
+            });
+
+            document.getElementById('prev-btn').disabled = currentQuestion === 0;
+        }
+
+        function checkAnswer(selectedIndex) {
+            const options = document.querySelectorAll('.option');
+            const correctIndex = questions[currentQuestion].correct;
+
+            options.forEach((option, index) => {
+                option.classList.remove('correct', 'incorrect');
+                if(index === correctIndex) {
+                    option.classList.add('correct');
+                } else if(index === selectedIndex) {
+                    option.classList.add('incorrect');
+                }
+            });
+
+            if(selectedIndex === correctIndex) {
+                score++;
+                scoreElement.textContent = `Score: ${score}`;
+            }
+        }
+
+        function nextQuestion() {
+            if(currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                showQuestion();
+            } else {
+                alert(`Quiz terminé ! Votre score final est : ${score}/${questions.length}`);
+            }
+        }
+
+        function previousQuestion() {
+            if(currentQuestion > 0) {
+                currentQuestion--;
+                showQuestion();
+            }
+        }
+
+        // Initialiser le quiz
+        showQuestion();
+    </script>
 </body>
 </html>
+
+
