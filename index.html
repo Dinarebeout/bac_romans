@@ -53,6 +53,7 @@
 
         .correct { background-color: #2ecc71 !important; }
         .incorrect { background-color: #e74c3c !important; }
+        .disabled { pointer-events: none; opacity: 0.6; }
 
         .score {
             text-align: center;
@@ -78,6 +79,17 @@
         button:hover {
             background-color: #2980b9;
         }
+
+        button:disabled {
+            background-color: #95a5a6;
+            cursor: not-allowed;
+        }
+
+        .explanation {
+            margin-top: 10px;
+            font-style: italic;
+            color: #555;
+        }
     </style>
 </head>
 <body>
@@ -89,6 +101,7 @@
     <div class="quiz-container">
         <div id="question-container" class="question"></div>
         <div id="options-container" class="options"></div>
+        <div id="explanation-container" class="explanation"></div>
         <div class="score" id="score">Score: 0</div>
         <div class="navigation">
             <button onclick="previousQuestion()" id="prev-btn">Précédent</button>
@@ -97,8 +110,8 @@
     </div>
 
     <script>
-        // Questions pour le chapitre 1 (ajouter les autres chapitres de la même manière)
         const questions = [
+            // Chapitre 1
             {
                 chapter: 1,
                 question: "Pourquoi le narrateur, Sidi Mohammed, dit-il qu’il ne dort pas au début du roman ?",
@@ -109,75 +122,1399 @@
                     "d) Parce qu’il joue avec sa boîte à merveilles"
                 ],
                 correct: 1,
-                explanation: "Le roman s’ouvre avec : « Moi, je ne dors pas. Je songe à ma solitude et j’en sens tout le poids. »"
+                explanation: "Le roman s’ouvre avec : « Moi, je ne dors pas. Je songe à ma solitude et j’en sens tout le poids. » Cela établit dès le départ le thème de la solitude qui hante le narrateur."
             },
-            // Ajouter les autres questions ici...
-        ];
-
-        let currentQuestion = 0;
-        let score = 0;
-        const questionContainer = document.getElementById('question-container');
-        const optionsContainer = document.getElementById('options-container');
-        const scoreElement = document.getElementById('score');
-
-        function showQuestion() {
-            const q = questions[currentQuestion];
-            questionContainer.innerHTML = `
-                <h3>Chapitre ${q.chapter}</h3>
-                <p>${q.question}</p>
-            `;
-
-            optionsContainer.innerHTML = '';
-            q.options.forEach((option, index) => {
-                const optionElement = document.createElement('div');
-                optionElement.className = 'option';
-                optionElement.innerHTML = option;
-                optionElement.onclick = () => checkAnswer(index);
-                optionsContainer.appendChild(optionElement);
-            });
-
-            document.getElementById('prev-btn').disabled = currentQuestion === 0;
-        }
-
-        function checkAnswer(selectedIndex) {
-            const options = document.querySelectorAll('.option');
-            const correctIndex = questions[currentQuestion].correct;
-
-            options.forEach((option, index) => {
-                option.classList.remove('correct', 'incorrect');
-                if(index === correctIndex) {
-                    option.classList.add('correct');
-                } else if(index === selectedIndex) {
-                    option.classList.add('incorrect');
-                }
-            });
-
-            if(selectedIndex === correctIndex) {
-                score++;
-                scoreElement.textContent = `Score: ${score}`;
-            }
-        }
-
-        function nextQuestion() {
-            if(currentQuestion < questions.length - 1) {
-                currentQuestion++;
-                showQuestion();
-            } else {
-                alert(`Quiz terminé ! Votre score final est : ${score}/${questions.length}`);
-            }
-        }
-
-        function previousQuestion() {
-            if(currentQuestion > 0) {
-                currentQuestion--;
-                showQuestion();
-            }
-        }
-
-        // Initialiser le quiz
-        showQuestion();
-    </script>
-</body>
-</html>
-
-
+            {
+                chapter: 1,
+                question: "Que contient la boîte à merveilles du narrateur ?",
+                options: [
+                    "a) Des jouets neufs achetés par ses parents",
+                    "b) Des objets précieux comme de l’or et des bijoux",
+                    "c) Des objets divers et hétéroclites qu’il collectionne",
+                    "d) Des livres et des crayons pour l’école"
+                ],
+                correct: 2,
+                explanation: "La boîte contient des objets comme « des boules de verre, des anneaux de cuivre, un minuscule cadenas sans clef », symboles de l’imagination de Sidi Mohammed."
+            },
+            {
+                chapter: 1,
+                question: "Où vit le narrateur avec sa famille ?",
+                options: [
+                    "a) Dans une maison isolée à la campagne",
+                    "b) Au deuxième étage de Dar Chouafa",
+                    "c) Dans une grande villa moderne",
+                    "d) Chez ses grands-parents"
+                ],
+                correct: 1,
+                explanation: "La famille de Sidi Mohammed occupe le deuxième étage de Dar Chouafa, une maison partagée avec d’autres locataires."
+            },
+            {
+                chapter: 1,
+                question: "Quel est le rôle de Lalla Kenza dans Dar Chouafa ?",
+                options: [
+                    "a) Elle est la propriétaire de la maison",
+                    "b) Elle est une voyante (chouafa)",
+                    "c) Elle est la femme de ménage",
+                    "d) Elle est l’amie de la mère du narrateur"
+                ],
+                correct: 1,
+                explanation: "Lalla Kenza, au rez-de-chaussée, est une chouafa, une figure mystique qui reflète les croyances populaires marocaines."
+            },
+            {
+                chapter: 1,
+                question: "Comment le narrateur perçoit-il le bain maure ?",
+                options: [
+                    "a) Comme un lieu de détente et de plaisir",
+                    "b) Comme une expérience effrayante et désagréable",
+                    "c) Comme une aventure excitante",
+                    "d) Comme un endroit où il rencontre ses amis"
+                ],
+                correct: 1,
+                explanation: "Sidi Mohammed décrit le bain avec des images de chaleur suffocante et de cris, montrant son dégoût."
+            },
+            {
+                chapter: 1,
+                question: "Qui est le père du narrateur ?",
+                options: [
+                    "a) Un riche commerçant de Fès",
+                    "b) Un homme simple d’origine montagnarde",
+                    "c) Un fqih (maître d’école coranique)",
+                    "d) Un voisin de Dar Chouafa"
+                ],
+                correct: 1,
+                explanation: "Le père, Moulay Abdeslam, est un homme modeste, originaire des montagnes, qui travaille comme tisserand."
+            },
+            {
+                chapter: 1,
+                question: "Quel est le métier du père du narrateur ?",
+                options: [
+                    "a) Marchand de légumes",
+                    "b) Tisserand",
+                    "c) Fabricant de charrues",
+                    "d) Voyant"
+                ],
+                correct: 1,
+                explanation: "Moulay Abdeslam gagne sa vie en tissant, un métier artisanal typique de l’époque décrite."
+            },
+            {
+                chapter: 1,
+                question: "Qui vit au premier étage de Dar Chouafa ?",
+                options: [
+                    "a) Lalla Kenza",
+                    "b) La famille de Driss El Aouad",
+                    "c) La famille du narrateur",
+                    "d) Un marchand riche"
+                ],
+                correct: 1,
+                explanation: "Driss El Aouad, sa femme Rahma et leur fille Zineb occupent le premier étage."
+            },
+            {
+                chapter: 1,
+                question: "Que ressent le narrateur face à sa boîte à merveilles ?",
+                options: [
+                    "a) De l’indifférence",
+                    "b) Une fascination et un réconfort",
+                    "c) De la peur",
+                    "d) De la colère"
+                ],
+                correct: 1,
+                explanation: "La boîte est un refuge pour Sidi Mohammed, un moyen d’échapper à sa solitude et à ses peurs."
+            },
+            {
+                chapter: 1,
+                question: "Quel est l’âge du narrateur au début du roman ?",
+                options: [
+                    "a) 4 ans",
+                    "b) 6 ans",
+                    "c) 10 ans",
+                    "d) 12 ans"
+                ],
+                correct: 1,
+                explanation: "Sidi Mohammed précise qu’il a 6 ans, un âge où il commence à observer et à réfléchir sur le monde qui l’entoure."
+            },
+            // Chapitre 2
+            {
+                chapter: 2,
+                question: "Pourquoi le mardi est-il un jour particulier pour le narrateur ?",
+                options: [
+                    "a) C’est le jour où il va au marché avec son père",
+                    "b) C’est un jour néfaste lié au msid",
+                    "c) C’est le jour où il reçoit des cadeaux",
+                    "d) C’est le jour où sa mère cuisine un plat spécial"
+                ],
+                correct: 1,
+                explanation: "Le narrateur associe le mardi au msid, où il subit des leçons rigoureuses, ce qui le remplit d’amertume."
+            },
+            {
+                chapter: 2,
+                question: "Que fait le narrateur après une nuit peuplée de cauchemars ?",
+                options: [
+                    "a) Il va jouer dehors avec Zineb",
+                    "b) Il reste au lit toute la journée",
+                    "c) Il ouvre sa boîte à merveilles pour se consoler",
+                    "d) Il aide sa mère à la maison"
+                ],
+                correct: 2,
+                explanation: "La boîte est son refuge émotionnel, surtout après des nuits difficiles."
+            },
+            {
+                chapter: 2,
+                question: "Qui est Zineb dans le roman ?",
+                options: [
+                    "a) La sœur du narrateur",
+                    "b) La fille de Driss El Aouad et Rahma",
+                    "c) Une amie de Lalla Kenza",
+                    "d) Une élève du msid"
+                ],
+                correct: 1,
+                explanation: "Zineb est la fille des voisins du premier étage, une figure qui apparaît dans la vie quotidienne du narrateur."
+            },
+            {
+                chapter: 2,
+                question: "Quelle dispute éclate dans le chapitre 2 ?",
+                options: [
+                    "a) Une dispute entre le narrateur et Zineb",
+                    "b) Une dispute entre la mère du narrateur et Rahma",
+                    "c) Une dispute entre le père du narrateur et Driss",
+                    "d) Une dispute entre Lalla Kenza et les voisins"
+                ],
+                correct: 1,
+                explanation: "La dispute concerne la lessive, révélant les tensions entre les femmes dans cet espace partagé."
+            },
+            {
+                chapter: 2,
+                question: "Comment le narrateur décrit-il le fqih du msid ?",
+                options: [
+                    "a) Comme un homme doux et patient",
+                    "b) Comme un maître sévère et autoritaire",
+                    "c) Comme un ami bienveillant",
+                    "d) Comme un vieillard faible"
+                ],
+                correct: 1,
+                explanation: "Le fqih est une figure crainte, qui impose une discipline stricte, ce qui terrifie Sidi Mohammed."
+            },
+            {
+                chapter: 2,
+                question: "Quel est le rôle de Lalla Zoubida, la mère du narrateur ?",
+                options: [
+                    "a) Elle est une voyante comme Lalla Kenza",
+                    "b) Elle s’occupe du foyer et protège son fils",
+                    "c) Elle travaille comme tisserande avec son mari",
+                    "d) Elle enseigne au msid"
+                ],
+                correct: 1,
+                explanation: "Lalla Zoubida est une mère aimante et protectrice, bien que parfois superstitieuse."
+            },
+            {
+                chapter: 2,
+                question: "Que fait Rahma pendant la dispute avec Lalla Zoubida ?",
+                options: [
+                    "a) Elle demande pardon",
+                    "b) Elle crie et menace de partir",
+                    "c) Elle appelle son mari à l’aide",
+                    "d) Elle ignore Lalla Zoubida"
+                ],
+                correct: 1,
+                explanation: "Rahma réagit avec colère, menaçant de quitter Dar Chouafa, ce qui amplifie le conflit."
+            },
+            {
+                chapter: 2,
+                question: "Quel est le lien entre le narrateur et le msid ?",
+                options: [
+                    "a) Il y va avec joie pour apprendre",
+                    "b) Il y est forcé et le déteste",
+                    "c) Il n’y va jamais",
+                    "d) Il y enseigne avec le fqih"
+                ],
+                correct: 1,
+                explanation: "Le msid est une source de peur et de frustration pour Sidi Mohammed."
+            },
+            {
+                chapter: 2,
+                question: "Quel objet le narrateur utilise-t-il pour calmer ses peurs ?",
+                options: [
+                    "a) Un livre sacré",
+                    "b) Sa boîte à merveilles",
+                    "c) Un jouet offert par Zineb",
+                    "d) Une amulette de Lalla Kenza"
+                ],
+                correct: 1,
+                explanation: "Cet objet est son talisman personnel contre l’angoisse et la solitude."
+            },
+            {
+                chapter: 2,
+                question: "Quelle est l’atmosphère générale de Dar Chouafa dans ce chapitre ?",
+                options: [
+                    "a) Calme et harmonieuse",
+                    "b) Tendue à cause des conflits",
+                    "c) Joyeuse grâce aux enfants",
+                    "d) Silencieuse et ennuyeuse"
+                ],
+                correct: 1,
+                explanation: "La dispute entre Lalla Zoubida et Rahma illustre les tensions dans cette maison collective."
+            },
+            // Chapitre 3
+            {
+                chapter: 3,
+                question: "Pourquoi le narrateur accompagne-t-il son père au souk dans ce chapitre ?",
+                options: [
+                    "a) Pour acheter des jouets",
+                    "b) Pour aider son père à vendre des étoffes",
+                    "c) Pour apprendre un métier",
+                    "d) Pour rencontrer des amis"
+                ],
+                correct: 1,
+                explanation: "Sidi Mohammed accompagne son père, Moulay Abdeslam, au souk où celui-ci vend des étoffes tissées, ce qui montre leur lien et la vie laborieuse du père."
+            },
+            {
+                chapter: 3,
+                question: "Comment le narrateur décrit-il le souk ?",
+                options: [
+                    "a) Comme un lieu calme et ennuyeux",
+                    "b) Comme un endroit bruyant et animé",
+                    "c) Comme un espace effrayant",
+                    "d) Comme une école en plein air"
+                ],
+                correct: 1,
+                explanation: "Le souk est présenté avec des bruits, des couleurs et une foule, captivant l’enfant malgré son jeune âge."
+            },
+            {
+                chapter: 3,
+                question: "Qui est Si Kaddour ?",
+                options: [
+                    "a) Un marchand voisin du père du narrateur",
+                    "b) Le maître du msid",
+                    "c) Un ami de Lalla Kenza",
+                    "d) Le propriétaire de Dar Chouafa"
+                ],
+                correct: 0,
+                explanation: "Si Kaddour est un vendeur d’épices installé près de Moulay Abdeslam au souk, avec qui il discute souvent."
+            },
+            {
+                chapter: 3,
+                question: "Quelle est l’attitude du père du narrateur au souk ?",
+                options: [
+                    "a) Il est impatient et nerveux",
+                    "b) Il est calme et patient avec les clients",
+                    "c) Il refuse de parler à quiconque",
+                    "d) Il se dispute avec les autres marchands"
+                ],
+                correct: 1,
+                explanation: "Moulay Abdeslam est décrit comme un homme posé, qui négocie tranquillement, reflétant sa simplicité et sa dignité."
+            },
+            {
+                chapter: 3,
+                question: "Que fait le narrateur pendant que son père travaille ?",
+                options: [
+                    "a) Il joue avec d’autres enfants",
+                    "b) Il observe les gens et rêve",
+                    "c) Il aide activement à vendre",
+                    "d) Il lit un livre"
+                ],
+                correct: 1,
+                explanation: "Sidi Mohammed passe son temps à regarder autour de lui et à laisser son imagination vagabonder, typique de son caractère rêveur."
+            },
+            {
+                chapter: 3,
+                question: "Quelle anecdote le père raconte-t-il au narrateur ?",
+                options: [
+                    "a) Une histoire sur un trésor caché",
+                    "b) Une dispute entre marchands",
+                    "c) Une leçon sur le tissage",
+                    "d) Une aventure dans les montagnes"
+                ],
+                correct: 3,
+                explanation: "Moulay Abdeslam évoque ses origines montagnardes, partageant une histoire qui fascine son fils."
+            },
+            {
+                chapter: 3,
+                question: "Quel sentiment domine le narrateur au souk ?",
+                options: [
+                    "a) La peur des voleurs",
+                    "b) L’admiration pour son père",
+                    "c) L’ennui d’être là",
+                    "d) La colère contre les clients"
+                ],
+                correct: 1,
+                explanation: "Sidi Mohammed ressent une fierté et une affection profondes en observant son père au travail."
+            },
+            {
+                chapter: 3,
+                question: "Que vend Si Kaddour au souk ?",
+                options: [
+                    "a) Des étoffes comme Moulay Abdeslam",
+                    "b) Des épices et des herbes",
+                    "c) Des bijoux artisanaux",
+                    "d) Des fruits frais"
+                ],
+                correct: 1,
+                explanation: "Si Kaddour est un marchand d’épices, dont les produits contrastent avec les étoffes du père."
+            },
+            {
+                chapter: 3,
+                question: "Pourquoi le narrateur aime-t-il accompagner son père ?",
+                options: [
+                    "a) Pour gagner de l’argent",
+                    "b) Pour échapper au msid",
+                    "c) Pour manger au souk",
+                    "d) Pour acheter des objets pour sa boîte"
+                ],
+                correct: 1,
+                explanation: "Le souk est une échappatoire à la rigueur du msid, offrant une liberté temporaire à Sidi Mohammed."
+            },
+            {
+                chapter: 3,
+                question: "Quelle est la relation entre Moulay Abdeslam et Si Kaddour ?",
+                options: [
+                    "a) Ils sont rivaux",
+                    "b) Ils sont amis et se respectent",
+                    "c) Ils ne se parlent jamais",
+                    "d) Ils se disputent souvent"
+                ],
+                correct: 1,
+                explanation: "Les deux hommes partagent des conversations amicales, montrant une camaraderie au souk."
+            },
+            // Chapitre 4
+            {
+                chapter: 4,
+                question: "Pourquoi Lalla Zoubida emmène-t-elle Sidi Mohammed chez une voyante ?",
+                options: [
+                    "a) Pour lui trouver un avenir meilleur",
+                    "b) Parce qu’il est malade et elle s’inquiète",
+                    "c) Pour lui acheter une amulette",
+                    "d) Pour le punir d’être désobéissant"
+                ],
+                correct: 1,
+                explanation: "Lalla Zoubida, superstitieuse, pense que la maladie de son fils est liée à un mauvais sort et cherche une solution mystique."
+            },
+            {
+                chapter: 4,
+                question: "Qui est la voyante que Lalla Zoubida consulte ?",
+                options: [
+                    "a) Lalla Kenza",
+                    "b) Une femme inconnue du quartier",
+                    "c) Rahma",
+                    "d) Une amie de la famille"
+                ],
+                correct: 1,
+                explanation: "Ce n’est pas Lalla Kenza, mais une autre voyante que Lalla Zoubida visite, soulignant sa croyance dans les pratiques occultes."
+            },
+            {
+                chapter: 4,
+                question: "Quel rituel la voyante accomplit-elle ?",
+                options: [
+                    "a) Elle lit l’avenir dans des cartes",
+                    "b) Elle brûle de l’encens et récite des formules",
+                    "c) Elle donne un bain au narrateur",
+                    "d) Elle prépare une potion magique"
+                ],
+                correct: 1,
+                explanation: "La voyante utilise de l’encens et des incantations pour conjurer le prétendu mauvais sort, une pratique traditionnelle."
+            },
+            {
+                chapter: 4,
+                question: "Comment le narrateur réagit-il à la visite chez la voyante ?",
+                options: [
+                    "a) Il est fasciné et curieux",
+                    "b) Il est terrifié et mal à l’aise",
+                    "c) Il s’amuse et rit",
+                    "d) Il ignore ce qui se passe"
+                ],
+                correct: 1,
+                explanation: "L’ambiance mystique et les gestes de la voyante effraient Sidi Mohammed, accentuant son sentiment d’insécurité."
+            },
+            {
+                chapter: 4,
+                question: "Que pense Lalla Zoubida de la maladie de son fils ?",
+                options: [
+                    "a) Qu’elle est due à une mauvaise alimentation",
+                    "b) Qu’elle est causée par le mauvais œil",
+                    "c) Qu’elle vient du froid extérieur",
+                    "d) Qu’elle est une punition divine"
+                ],
+                correct: 1,
+                explanation: "Lalla Zoubida attribue les maux de son fils au « mauvais œil », une croyance répandue dans la culture marocaine."
+            },
+            {
+                chapter: 4,
+                question: "Quel objet la voyante donne-t-elle à Lalla Zoubida ?",
+                options: [
+                    "a) Une amulette à porter",
+                    "b) Un livre de prières",
+                    "c) Une boule de verre",
+                    "d) Une étoffe bénie"
+                ],
+                correct: 0,
+                explanation: "La voyante remet une amulette à Lalla Zoubida pour protéger Sidi Mohammed, un objet censé repousser les mauvais esprits."
+            },
+            {
+                chapter: 4,
+                question: "Quelle est l’attitude de Moulay Abdeslam face à cette visite ?",
+                options: [
+                    "a) Il approuve et accompagne sa femme",
+                    "b) Il désapprouve mais ne s’oppose pas",
+                    "c) Il se moque de Lalla Zoubida",
+                    "d) Il interdit cette pratique"
+                ],
+                correct: 1,
+                explanation: "Moulay Abdeslam, plus rationnel, n’approuve pas ces superstitions mais laisse sa femme agir, montrant sa résignation."
+            },
+            {
+                chapter: 4,
+                question: "Quel est le sentiment dominant du narrateur après la visite ?",
+                options: [
+                    "a) Le soulagement",
+                    "b) La confusion et la peur",
+                    "c) La joie d’être guéri",
+                    "d) L’indifférence"
+                ],
+                correct: 1,
+                explanation: "Sidi Mohammed reste troublé par l’expérience, ne comprenant pas pleinement ce qui s’est passé."
+            },
+            {
+                chapter: 4,
+                question: "Pourquoi Lalla Zoubida insiste-t-elle pour consulter une voyante ?",
+                options: [
+                    "a) Pour impressionner ses voisins",
+                    "b) Par amour et inquiétude pour son fils",
+                    "c) Pour dépenser de l’argent",
+                    "d) Par curiosité personnelle"
+                ],
+                correct: 1,
+                explanation: "Son geste est motivé par une profonde affection maternelle et une peur sincère pour la santé de Sidi Mohammed."
+            },
+            {
+                chapter: 4,
+                question: "Quel contraste apparaît dans ce chapitre ?",
+                options: [
+                    "a) Entre la richesse et la pauvreté",
+                    "b) Entre la superstition de la mère et la rationalité du père",
+                    "c) Entre la ville et la campagne",
+                    "d) Entre les enfants et les adultes"
+                ],
+                correct: 1,
+                explanation: "Lalla Zoubida croit aux pratiques mystiques, tandis que Moulay Abdeslam reste sceptique, soulignant leurs différences."
+            },
+            // Chapitre 5
+            {
+                chapter: 5,
+                question: "Pourquoi Moulay Abdeslam décide-t-il d’aller à la campagne ?",
+                options: [
+                    "a) Pour vendre des étoffes",
+                    "b) Pour visiter sa famille dans les montagnes",
+                    "c) Pour échapper à une dispute à Dar Chouafa",
+                    "d) Pour acheter des provisions"
+                ],
+                correct: 1,
+                explanation: "Moulay Abdeslam emmène sa famille dans les montagnes pour voir ses proches, offrant à Sidi Mohammed une expérience nouvelle loin de Fès."
+            },
+            {
+                chapter: 5,
+                question: "Comment le narrateur perçoit-il le voyage vers la campagne ?",
+                options: [
+                    "a) Comme une corvée fatigante",
+                    "b) Comme une aventure excitante",
+                    "c) Comme un moment de peur",
+                    "d) Comme une punition"
+                ],
+                correct: 1,
+                explanation: "Sidi Mohammed est émerveillé par les paysages et les sensations du voyage, contrastant avec sa routine urbaine."
+            },
+            {
+                chapter: 5,
+                question: "Qui accompagne la famille dans ce voyage ?",
+                options: [
+                    "a) Lalla Kenza",
+                    "b) Driss El Aouad",
+                    "c) Personne d’autre",
+                    "d) Si Kaddour"
+                ],
+                correct: 2,
+                explanation: "C’est un voyage familial intime, impliquant seulement Moulay Abdeslam, Lalla Zoubida et Sidi Mohammed."
+            },
+            {
+                chapter: 5,
+                question: "Quel est le moyen de transport utilisé pour aller à la campagne ?",
+                options: [
+                    "a) Une charrette tirée par un âne",
+                    "b) Une voiture moderne",
+                    "c) Un cheval",
+                    "d) À pied"
+                ],
+                correct: 0,
+                explanation: "La famille voyage modestement dans une charrette, reflétant leur condition simple."
+            },
+            {
+                chapter: 5,
+                question: "Que découvre le narrateur dans les montagnes ?",
+                options: [
+                    "a) Une rivière et des paysages naturels",
+                    "b) Une grande ville animée",
+                    "c) Un souk comme à Fès",
+                    "d) Une école coranique"
+                ],
+                correct: 0,
+                explanation: "Sidi Mohammed est fasciné par la nature, comme les rivières et les arbres, qui contrastent avec son quotidien."
+            },
+            {
+                chapter: 5,
+                question: "Quelle est l’attitude de Lalla Zoubida pendant le voyage ?",
+                options: [
+                    "a) Elle est joyeuse et détendue",
+                    "b) Elle est inquiète et superstitieuse",
+                    "c) Elle est en colère contre son mari",
+                    "d) Elle dort tout le temps"
+                ],
+                correct: 1,
+                explanation: "Lalla Zoubida reste préoccupée par les dangers potentiels, fidèle à son caractère anxieux."
+            },
+            {
+                chapter: 5,
+                question: "Comment les habitants des montagnes accueillent-ils la famille ?",
+                options: [
+                    "a) Avec froideur et méfiance",
+                    "b) Avec chaleur et hospitalité",
+                    "c) En les ignorant",
+                    "d) En demandant de l’argent"
+                ],
+                correct: 1,
+                explanation: "Les montagnards, parents de Moulay Abdeslam, reçoivent la famille avec générosité, typique des traditions rurales."
+            },
+            {
+                chapter: 5,
+                question: "Quel sentiment domine Sidi Mohammed à la campagne ?",
+                options: [
+                    "a) La peur des animaux sauvages",
+                    "b) La joie de la liberté",
+                    "c) L’ennui loin de sa boîte",
+                    "d) La tristesse d’être loin de Zineb"
+                ],
+                correct: 1,
+                explanation: "Loin des contraintes du msid et de Dar Chouafa, Sidi Mohammed savoure une liberté nouvelle."
+            },
+            {
+                chapter: 5,
+                question: "Que fait Moulay Abdeslam dans les montagnes ?",
+                options: [
+                    "a) Il travaille comme tisserand",
+                    "b) Il raconte des histoires à sa famille",
+                    "c) Il chasse avec les habitants",
+                    "d) Il vend des produits du souk"
+                ],
+                correct: 1,
+                explanation: "Moulay Abdeslam partage des récits de son passé, renforçant son lien avec son fils."
+            },
+            {
+                chapter: 5,
+                question: "Pourquoi ce voyage est-il important pour le narrateur ?",
+                options: [
+                    "a) Il apprend à tisser",
+                    "b) Il découvre les origines de son père",
+                    "c) Il gagne de l’argent",
+                    "d) Il rencontre un fqih"
+                ],
+                correct: 1,
+                explanation: "Le voyage révèle à Sidi Mohammed les racines montagnardes de son père, enrichissant sa vision du monde."
+            },
+            // Chapitre 6
+            {
+                chapter: 6,
+                question: "Pourquoi Moulay Abdeslam part-il seul au début du chapitre ?",
+                options: [
+                    "a) Pour vendre des étoffes au souk",
+                    "b) Pour chercher un nouvel emploi",
+                    "c) Pour assister à une fête religieuse",
+                    "d) Pour rendre visite à un ami malade"
+                ],
+                correct: 2,
+                explanation: "Moulay Abdeslam participe à une célébration traditionnelle, laissant temporairement sa famille à Dar Chouafa."
+            },
+            {
+                chapter: 6,
+                question: "Que fait Lalla Zoubida pendant l’absence de son mari ?",
+                options: [
+                    "a) Elle consulte une voyante",
+                    "b) Elle prépare une fête",
+                    "c) Elle s’occupe seule de Sidi Mohammed",
+                    "d) Elle rend visite à Rahma"
+                ],
+                correct: 2,
+                explanation: "Lalla Zoubida assume pleinement son rôle de mère en l’absence de Moulay Abdeslam."
+            },
+            {
+                chapter: 6,
+                question: "Quelle nouvelle inquiétude surgit pour Lalla Zoubida ?",
+                options: [
+                    "a) La maladie de son mari",
+                    "b) La disparition prolongée de Moulay Abdeslam",
+                    "c) Une dispute avec Rahma",
+                    "d) La perte de la boîte à merveilles"
+                ],
+                correct: 1,
+                explanation: "L’absence inhabituellement longue de son mari angoisse Lalla Zoubida, qui craint le pire."
+            },
+            {
+                chapter: 6,
+                question: "Comment le narrateur passe-t-il son temps sans son père ?",
+                options: [
+                    "a) En jouant avec Zineb",
+                    "b) En allant au msid",
+                    "c) En explorant sa boîte à merveilles",
+                    "d) En aidant sa mère"
+                ],
+                correct: 2,
+                explanation: "Sidi Mohammed se réfugie dans sa boîte pour tromper l’attente et l’inquiétude."
+            },
+            {
+                chapter: 6,
+                question: "Quelle rumeur circule à Dar Chouafa pendant cette période ?",
+                options: [
+                    "a) Que Moulay Abdeslam a gagné beaucoup d’argent",
+                    "b) Que Moulay Abdeslam est mort ou perdu",
+                    "c) Que Lalla Kenza a prédit un malheur",
+                    "d) Que la famille va déménager"
+                ],
+                correct: 1,
+                explanation: "Les voisins commencent à spéculer sur le sort de Moulay Abdeslam, amplifiant l’angoisse."
+            },
+            {
+                chapter: 6,
+                question: "Quel rôle joue Lalla Kenza dans ce chapitre ?",
+                options: [
+                    "a) Elle console Lalla Zoubida",
+                    "b) Elle prédit l’avenir de Moulay Abdeslam",
+                    "c) Elle organise une recherche",
+                    "d) Elle reste indifférente"
+                ],
+                correct: 0,
+                explanation: "Lalla Kenza offre du réconfort à Lalla Zoubida, renforçant leur lien dans cette épreuve."
+            },
+            {
+                chapter: 6,
+                question: "Que ressent Sidi Mohammed face à l’absence de son père ?",
+                options: [
+                    "a) De la joie de ne pas aller au msid",
+                    "b) De l’angoisse et de la confusion",
+                    "c) De l’indifférence",
+                    "d) De la colère contre sa mère"
+                ],
+                correct: 1,
+                explanation: "L’absence de son père trouble profondément Sidi Mohammed, qui ne comprend pas la situation."
+            },
+            {
+                chapter: 6,
+                question: "Comment Lalla Zoubida réagit-elle aux rumeurs ?",
+                options: [
+                    "a) Elle les ignore complètement",
+                    "b) Elle pleure et prie pour son mari",
+                    "c) Elle accuse les voisins",
+                    "d) Elle part à sa recherche"
+                ],
+                correct: 1,
+                explanation: "Lalla Zoubida se tourne vers la prière, mêlant désespoir et foi dans cette crise."
+            },
+            {
+                chapter: 6,
+                question: "Que symbolise la boîte à merveilles dans ce chapitre ?",
+                options: [
+                    "a) Un souvenir du père absent",
+                    "b) Une distraction face à l’angoisse",
+                    "c) Un objet inutile",
+                    "d) Une source de conflit"
+                ],
+                correct: 1,
+                explanation: "La boîte reste un refuge pour Sidi Mohammed, l’aidant à supporter l’incertitude."
+            },
+            {
+                chapter: 6,
+                question: "Quelle est l’atmosphère à Dar Chouafa sans Moulay Abdeslam ?",
+                options: [
+                    "a) Calme et paisible",
+                    "b) Tendue et pleine de murmures",
+                    "c) Joyeuse malgré son absence",
+                    "d) Silencieuse et vide"
+                ],
+                correct: 1,
+                explanation: "L’absence de Moulay Abdeslam crée une atmosphère lourde, alimentée par les rumeurs et l’inquiétude."
+            },
+            // Chapitre 7
+            {
+                chapter: 7,
+                question: "Que découvre-t-on sur le sort de Moulay Abdeslam dans ce chapitre ?",
+                options: [
+                    "a) Il est mort dans un accident",
+                    "b) Il revient sain et sauf",
+                    "c) Il a décidé de rester dans les montagnes",
+                    "d) Il a été volé au souk"
+                ],
+                correct: 1,
+                explanation: "Moulay Abdeslam rentre finalement, dissipant les craintes de sa famille et des voisins."
+            },
+            {
+                chapter: 7,
+                question: "Comment Lalla Zoubida réagit-elle au retour de son mari ?",
+                options: [
+                    "a) Avec colère pour son retard",
+                    "b) Avec joie et soulagement",
+                    "c) Avec indifférence",
+                    "d) Avec des reproches publics"
+                ],
+                correct: 1,
+                explanation: "Lalla Zoubida est submergée de bonheur et de gratitude en retrouvant son mari sain et sauf."
+            },
+            {
+                chapter: 7,
+                question: "Pourquoi Moulay Abdeslam était-il absent si longtemps ?",
+                options: [
+                    "a) Il a été retenu par une tempête",
+                    "b) Il a prolongé la fête religieuse",
+                    "c) Il a été attaqué par des bandits",
+                    "d) Il a perdu son chemin"
+                ],
+                correct: 1,
+                explanation: "Moulay Abdeslam explique que les célébrations ont duré plus longtemps que prévu, ce qui a retardé son retour."
+            },
+            {
+                chapter: 7,
+                question: "Quel cadeau Moulay Abdeslam ramène-t-il à Sidi Mohammed ?",
+                options: [
+                    "a) Une nouvelle boîte à merveilles",
+                    "b) Des friandises de la fête",
+                    "c) Un jouet en bois",
+                    "d) Rien du tout"
+                ],
+                correct: 1,
+                explanation: "Il offre à son fils des douceurs, un geste simple mais affectueux."
+            },
+            {
+                chapter: 7,
+                question: "Comment le narrateur décrit-il le retour de son père ?",
+                options: [
+                    "a) Comme un événement banal",
+                    "b) Comme un moment de bonheur intense",
+                    "c) Comme une déception",
+                    "d) Comme une source de peur"
+                ],
+                correct: 1,
+                explanation: "Sidi Mohammed ressent une joie immense en retrouvant son père, renforçant leur lien."
+            },
+            {
+                chapter: 7,
+                question: "Quelle leçon Moulay Abdeslam partage-t-il avec sa famille ?",
+                options: [
+                    "a) L’importance de la patience",
+                    "b) La nécessité de voyager souvent",
+                    "c) La méfiance envers les voisins",
+                    "d) L’abandon des superstitions"
+                ],
+                correct: 0,
+                explanation: "Il insiste sur la patience face aux épreuves, reflétant sa philosophie de vie."
+            },
+            {
+                chapter: 7,
+                question: "Comment les voisins réagissent-ils au retour de Moulay Abdeslam ?",
+                options: [
+                    "a) Ils l’ignorent",
+                    "b) Ils le célèbrent avec une fête",
+                    "c) Ils se moquent de Lalla Zoubida",
+                    "d) Ils expriment leur soulagement"
+                ],
+                correct: 3,
+                explanation: "Les habitants de Dar Chouafa, ayant partagé l’inquiétude, sont soulagés de son retour."
+            },
+            {
+                chapter: 7,
+                question: "Que fait Sidi Mohammed avec les friandises de son père ?",
+                options: [
+                    "a) Il les partage avec Zineb",
+                    "b) Il les garde pour lui",
+                    "c) Il les offre à sa mère",
+                    "d) Il les met dans sa boîte"
+                ],
+                correct: 0,
+                explanation: "Ce geste montre son amitié avec Zineb et sa générosité d’enfant."
+            },
+            {
+                chapter: 7,
+                question: "Quel rôle joue la boîte à merveilles après le retour du père ?",
+                options: [
+                    "a) Elle devient inutile",
+                    "b) Elle reste un refuge émotionnel",
+                    "c) Elle est perdue",
+                    "d) Elle est donnée à Zineb"
+                ],
+                correct: 1,
+                explanation: "Même avec le retour de son père, la boîte conserve son importance pour Sidi Mohammed."
+            },
+            {
+                chapter: 7,
+                question: "Quelle est l’atmosphère finale de Dar Chouafa dans ce chapitre ?",
+                options: [
+                    "a) Tendue à cause des rumeurs",
+                    "b) Harmonieuse et apaisée",
+                    "c) Triste malgré le retour",
+                    "d) Confuse et agitée"
+                ],
+                correct: 1,
+                explanation: "Le retour de Moulay Abdeslam restaure la paix et la stabilité dans la maison."
+            },
+            // Chapitre 8
+            {
+                chapter: 8,
+                question: "Quel événement marque le début du chapitre 8 ?",
+                options: [
+                    "a) Une fête religieuse",
+                    "b) Une visite chez Lalla Aïcha",
+                    "c) Une dispute entre voisins",
+                    "d) Le départ du père au souk"
+                ],
+                correct: 0,
+                explanation: "Le chapitre s’ouvre sur les préparatifs de l’Achoura, une célébration importante au Maroc."
+            },
+            {
+                chapter: 8,
+                question: "Que fait Lalla Zoubida pour préparer l’Achoura ?",
+                options: [
+                    "a) Elle achète des jouets pour son fils",
+                    "b) Elle cuisine des plats traditionnels",
+                    "c) Elle consulte une voyante",
+                    "d) Elle nettoie toute la maison"
+                ],
+                correct: 1,
+                explanation: "Lalla Zoubida prépare des mets comme des crêpes et des gâteaux, typiques de cette fête."
+            },
+            {
+                chapter: 8,
+                question: "Quel cadeau Sidi Mohammed reçoit-il pour l’Achoura ?",
+                options: [
+                    "a) Une nouvelle boîte à merveilles",
+                    "b) Un tambourin",
+                    "c) Des vêtements neufs",
+                    "d) De l’argent"
+                ],
+                correct: 1,
+                explanation: "Moulay Abdeslam offre un tambourin à son fils, un jouet traditionnel pour les enfants lors de l’Achoura."
+            },
+            {
+                chapter: 8,
+                question: "Comment le narrateur réagit-il à son cadeau ?",
+                options: [
+                    "a) Il est déçu et le rejette",
+                    "b) Il est ravi et joue avec",
+                    "c) Il le perd immédiatement",
+                    "d) Il le donne à Zineb"
+                ],
+                correct: 1,
+                explanation: "Sidi Mohammed est excité par le tambourin et s’amuse à en jouer, montrant une joie enfantine."
+            },
+            {
+                chapter: 8,
+                question: "Que font les enfants pendant l’Achoura selon le texte ?",
+                options: [
+                    "a) Ils vont au msid",
+                    "b) Ils chantent et jouent dans les rues",
+                    "c) Ils aident leurs parents",
+                    "d) Ils restent à la maison"
+                ],
+                correct: 1,
+                explanation: "L’Achoura est une fête où les enfants s’amusent dehors avec des instruments comme des tambourins."
+            },
+            {
+                chapter: 8,
+                question: "Quelle est l’attitude de Moulay Abdeslam pendant la fête ?",
+                options: [
+                    "a) Il participe activement aux jeux",
+                    "b) Il reste calme et observe",
+                    "c) Il gronde les enfants bruyants",
+                    "d) Il part travailler"
+                ],
+                correct: 1,
+                explanation: "Moulay Abdeslam, fidèle à son caractère posé, regarde la fête avec bienveillance sans s’impliquer."
+            },
+            {
+                chapter: 8,
+                question: "Que représente l’Achoura pour le narrateur ?",
+                options: [
+                    "a) Une corvée ennuyeuse",
+                    "b) Un moment de joie et de liberté",
+                    "c) Une source de peur",
+                    "d) Une obligation religieuse"
+                ],
+                correct: 1,
+                explanation: "La fête brise la routine austère du msid et offre à Sidi Mohammed une rare occasion de s’amuser."
+            },
+            {
+                chapter: 8,
+                question: "Qui accompagne Sidi Mohammed dans ses jeux ?",
+                options: [
+                    "a) Zineb, la fille de Rahma",
+                    "b) Lalla Kenza",
+                    "c) Son père",
+                    "d) Les femmes de Dar Chouafa"
+                ],
+                correct: 0,
+                explanation: "Zineb, sa voisine, partage les jeux de l’Achoura avec lui, renforçant leur complicité."
+            },
+            {
+                chapter: 8,
+                question: "Quel contraste apparaît dans ce chapitre ?",
+                options: [
+                    "a) Entre la richesse et la pauvreté",
+                    "b) Entre la rigueur du msid et la fête",
+                    "c) Entre la superstition et la joie",
+                    "d) Entre les adultes et les enfants"
+                ],
+                correct: 1,
+                explanation: "L’Achoura offre une pause joyeuse face à la discipline habituelle du msid, soulignant cette opposition."
+            },
+            {
+                chapter: 8,
+                question: "Que devient la boîte à merveilles durant la fête ?",
+                options: [
+                    "a) Elle est oubliée temporairement",
+                    "b) Elle est cassée par Zineb",
+                    "c) Elle est offerte en cadeau",
+                    "d) Elle est remplie de nouveaux objets"
+                ],
+                correct: 0,
+                explanation: "Le tambourin et les jeux de l’Achoura captivent Sidi Mohammed, reléguant momentanément la boîte au second plan."
+            },
+            // Chapitre 9
+            {
+                chapter: 9,
+                question: "Pourquoi le père du narrateur est-il ruiné ?",
+                options: [
+                    "a) Il a perdu un pari",
+                    "b) Il a été volé par un voisin",
+                    "c) Il a perdu son capital au souk des haïks",
+                    "d) Il a dépensé tout son argent en cadeaux"
+                ],
+                correct: 2,
+                explanation: "Maalem Abdeslam annonce à sa famille qu’il a perdu tout son capital dans une transaction au souk des haïks, ce qui constitue le point de départ de la crise familiale dans ce chapitre."
+            },
+            {
+                chapter: 9,
+                question: "Comment Lalla Zoubida réagit-elle à la nouvelle de la ruine ?",
+                options: [
+                    "a) Elle éclate de rire",
+                    "b) Elle reste silencieuse et abattue",
+                    "c) Elle accuse son mari de mensonge",
+                    "d) Elle prépare un repas pour le consoler"
+                ],
+                correct: 1,
+                explanation: "Lalla Zoubida est profondément affectée par la nouvelle. Son silence reflète son désarroi face à la situation désespérée de la famille."
+            },
+            {
+                chapter: 9,
+                question: "Que fait Sidi Mohammed après le dîner triste ?",
+                options: [
+                    "a) Il sort jouer dans la rue",
+                    "b) Il vide sa boîte à merveilles",
+                    "c) Il aide sa mère à nettoyer",
+                    "d) Il lit un livre"
+                ],
+                correct: 1,
+                explanation: "Resté seul après le départ de sa mère chez Lalla Aïcha, Sidi Mohammed sort sa boîte à merveilles pour se distraire, mais les objets ne lui apportent pas de réconfort."
+            },
+            {
+                chapter: 9,
+                question: "Quelle est l’humeur générale de la maison après l’annonce de la ruine ?",
+                options: [
+                    "a) Joyeuse et optimiste",
+                    "b) Tendue et mélancolique",
+                    "c) Bruyante et animée",
+                    "d) Indifférente"
+                ],
+                correct: 1,
+                explanation: "La ruine du père plonge la famille dans une atmosphère pesante, marquée par le silence et la tristesse, notamment lors du dîner."
+            },
+            {
+                chapter: 9,
+                question: "Où Lalla Zoubida se rend-elle après le dîner ?",
+                options: [
+                    "a) Chez Rahma",
+                    "b) Chez Lalla Aïcha",
+                    "c) Au marché",
+                    "d) Chez un guérisseur"
+                ],
+                correct: 1,
+                explanation: "Lalla Zoubida va chercher du soutien chez son amie Lalla Aïcha pour partager son désarroi et trouver du réconfort face à la situation."
+            },
+            {
+                chapter: 9,
+                question: "Que décide de faire le père pour surmonter sa ruine ?",
+                options: [
+                    "a) Vendre la maison",
+                    "b) Partir comme ouvrier moissonneur",
+                    "c) Demander un prêt",
+                    "d) Abandonner son métier"
+                ],
+                correct: 1,
+                explanation: "Maalem Abdeslam choisit de quitter Fès pour travailler comme ouvrier moissonneur dans les champs, une décision pragmatique pour gagner de l’argent."
+            },
+            {
+                chapter: 9,
+                question: "Pourquoi les objets de la boîte à merveilles ne consolent-ils pas Sidi Mohammed ?",
+                options: [
+                    "a) Ils sont cassés",
+                    "b) Ils lui rappellent sa tristesse",
+                    "c) Il les trouve ennuyeux",
+                    "d) Quelqu’un les a volés"
+                ],
+                correct: 1,
+                explanation: "Dans son état de mélancolie, les objets de la boîte, habituellement source de joie, reflètent désormais les malheurs de sa famille."
+            },
+            {
+                chapter: 9,
+                question: "Comment Sidi Mohammed se sent-il physiquement dans ce chapitre ?",
+                options: [
+                    "a) Plein de force",
+                    "b) Encore faible après sa maladie",
+                    "c) Énergique et reposé",
+                    "d) Malade à nouveau"
+                ],
+                correct: 1,
+                explanation: "Bien qu’en voie de guérison, Sidi Mohammed reste fragile, ce qui accentue son sentiment de vulnérabilité face aux événements."
+            },
+            {
+                chapter: 9,
+                question: "Quel est le métier du père avant sa ruine ?",
+                options: [
+                    "a) Marchand de légumes",
+                    "b) Tisserand",
+                    "c) Forgeron",
+                    "d) Instituteur"
+                ],
+                correct: 1,
+                explanation: "Maalem Abdeslam est un tisserand, un métier artisanal qui dépend du commerce des haïks, ce qui explique sa perte au souk."
+            },
+            {
+                chapter: 9,
+                question: "Pourquoi Sidi Mohammed reste-t-il seul à la maison ?",
+                options: [
+                    "a) Il refuse de sortir",
+                    "b) Sa mère part voir Lalla Aïcha",
+                    "c) Son père l’oblige à rester",
+                    "d) Il est puni"
+                ],
+                correct: 1,
+                explanation: "Après le dîner, Lalla Zoubida quitte la maison pour rendre visite à Lalla Aïcha, laissant Sidi Mohammed seul avec ses pensées."
+            },
+            // Chapitre 10
+            {
+                chapter: 10,
+                question: "Où se rendent Sidi Mohammed, sa mère et Lalla Aïcha ?",
+                options: [
+                    "a) Au souk des bijoux",
+                    "b) Chez Sidi El Arafi au quartier Seffah",
+                    "c) Chez un marabout célèbre",
+                    "d) À une fête de quartier"
+                ],
+                correct: 1,
+                explanation: "Le trio se rend chez Sidi El Arafi, un voyant aveugle du quartier Seffah, pour chercher des réponses à leurs malheurs."
+            },
+            {
+                chapter: 10,
+                question: "Quelle est la particularité physique de Sidi El Arafi ?",
+                options: [
+                    "a) Il est sourd",
+                    "b) Il est aveugle",
+                    "c) Il a une jambe de bois",
+                    "d) Il est très vieux"
+                ],
+                correct: 1,
+                explanation: "Sidi El Arafi est décrit comme un voyant aveugle, une caractéristique qui le rend mystérieux et impressionnant aux yeux de Sidi Mohammed."
+            },
+            {
+                chapter: 10,
+                question: "Quel objet Sidi El Arafi utilise-t-il pour ses prédictions ?",
+                options: [
+                    "a) Un livre sacré",
+                    "b) Un panier d’objets",
+                    "c) Une boule de cristal",
+                    "d) Des osselets"
+                ],
+                correct: 1,
+                explanation: "Sidi El Arafi fait tirer un objet au hasard dans un panier à chaque visiteur, utilisant cet objet pour deviner leurs soucis ou leur destin."
+            },
+            {
+                chapter: 10,
+                question: "À quoi le panier de Sidi El Arafi fait-il penser Sidi Mohammed ?",
+                options: [
+                    "a) À un trésor caché",
+                    "b) À sa boîte à merveilles",
+                    "c) Aux jouets de Zineb",
+                    "d) Aux outils de son père"
+                ],
+                correct: 1,
+                explanation: "Le panier évoque la boîte à merveilles de Sidi Mohammed, car les deux contiennent des objets symboliques qui stimulent son imagination."
+            },
+            {
+                chapter: 10,
+                question: "Pourquoi Lalla Zoubida et Lalla Aïcha consultent-elles Sidi El Arafi ?",
+                options: [
+                    "a) Pour organiser une cérémonie",
+                    "b) Pour trouver des réponses à leurs malheurs",
+                    "c) Pour acheter des remèdes",
+                    "d) Pour lui demander un prêt"
+                ],
+                correct: 1,
+                explanation: "Les deux femmes espèrent que Sidi El Arafi leur offrira des conseils ou des prédictions pour surmonter la ruine et leurs soucis personnels."
+            },
+            {
+                chapter: 10,
+                question: "Comment Sidi Mohammed perçoit-il Sidi El Arafi ?",
+                options: [
+                    "a) Comme un homme ordinaire",
+                    "b) Comme un sage de contes",
+                    "c) Comme un escroc",
+                    "d) Comme un voisin bruyant"
+                ],
+                correct: 1,
+                explanation: "La sagesse et le calme de Sidi El Arafi rappellent à Sidi Mohammed les figures héroïques des contes, le fascinant profondément."
+            },
+            {
+                chapter: 10,
+                question: "Qui accompagne Sidi El Arafi dans sa maison ?",
+                options: [
+                    "a) Ses enfants",
+                    "b) Sa femme",
+                    "c) Un apprenti",
+                    "d) Un voisin"
+                ],
+                correct: 1,
+                explanation: "La femme de Sidi El Arafi est présente et lui apporte le panier d’objets, jouant un rôle discret mais essentiel dans la scène."
+            },
+            {
+                chapter: 10,
+                question: "Que ressent Sidi Mohammed en observant Sidi El Arafi ?",
+                options: [
+                    "a) De la peur",
+                    "b) De l’admiration",
+                    "c) De l’ennui",
+                    "d) De la colère"
+                ],
+                correct: 1,
+                explanation: "Sidi Mohammed est captivé par l’éloquence et le mystère de Sidi El Arafi, qui contraste avec la dureté de son quotidien."
+            },
+            {
+                chapter: 10,
+                question: "Quel est le ton de Sidi El Arafi lorsqu’il parle aux visiteurs ?",
+                options: [
+                    "a) Arrogant et autoritaire",
+                    "b) Doux et sage",
+                    "c) Moqueur et sarcastique",
+                    "d) Froid et distant"
+                ],
+                correct: 1,
+                explanation: "Sidi El Arafi s’exprime avec une douceur et une sagesse qui impressionnent Sidi Mohammed et inspirent confiance aux visiteurs."
+            },
+            {
+                chapter: 10,
+                question: "Quel effet la visite chez Sidi El Arafi a-t-elle sur Sidi Mohammed ?",
+                options: [
+                    "a) Elle le rend sceptique",
+                    "b) Elle le transporte dans un monde imaginaire",
+                    "c) Elle l’ennuie profondément",
+                    "d) Elle le met en colère"
+                ],
+                correct: 1,
+                explanation: "La rencontre avec Sidi El Arafi, avec son rituel mystique, éloigne Sidi Mohammed de la réalité sombre et le plonge dans un univers proche de ses rêves et contes."
+            },
+            // Chapitre 11
+            {
+                chapter: 11,
+                question: "Pourquoi Moulay Abdeslam part-il travailler comme ouvrier moissonneur ?",
+                options: [
+                    "a) Pour échapper à sa femme",
+                    "b) Pour reconstruire sa fortune après la ruine",
+                    "c) Pour apprendre un nouveau métier",
+                    "d) Pour visiter les champs"
+                ],
+                correct: 1,
+                explanation: "Après avoir perdu son capital au souk des haïks, Moulay Abdeslam part travailler dans les champs pour subvenir aux besoins de sa famille et retrouver une stabilité financière."
+            },
+            {
+                chapter: 11,
+                question: "Où Lalla Zoubida et Sidi Mohammed vont-ils vivre pendant l’absence du père ?",
+                options: [
+                    "a) Chez Lalla Kenza",
+                    "b) Chez les parents de Moulay Abdeslam",
+                    "c) Dans une nouvelle maison à Fès",
+                    "d) Chez Lalla Aïcha"
+                ],
+                correct: 3,
+                explanation: "Lalla Zoubida décide de s’installer temporairement chez son amie Lalla Aïcha avec Sidi Mohammed, cherchant du réconfort et un soutien pendant l’absence de son mari."
+            },
+            {
+                chapter: 11,
+                question: "Quel est l’état d’esprit de Lalla Zoubida face au départ de son mari ?",
+                options: [
+                    "a) Elle est soulagée de son absence",
+                    "b) Elle est inquiète mais résignée",
+                    "c) Elle est en colère contre lui",
+                    "d) Elle est indifférente"
+                ],
+                correct: 1,
+                explanation: "Lalla Zoubida craint pour l’avenir, mais accepte la décision de son mari comme un mal nécessaire pour surmonter leur situation."
+            },
+            {
+                chapter: 11,
+                question: "Que fait Sidi Mohammed chez Lalla Aïcha ?",
+                options: [
+                    "a) Il joue avec ses cousins",
+                    "b) Il explore sa boîte à merveilles",
+                    "c) Il aide aux tâches ménagères",
+                    "d) Il va au msid"
+                ],
+                correct: 1,
+                explanation: "Chez Lalla Aïcha, Sidi Mohammed se tourne vers sa boîte à merveilles pour trouver du réconfort dans cet environnement inconnu."
+            },
+            {
+                chapter: 11,
+                question: "Comment Lalla Aïcha traite-t-elle Sidi Mohammed ?",
+                options: [
+                    "a) Avec froideur et distance",
+                    "b) Avec affection et générosité",
+                    "c) En le grondant souvent",
+                    "d) En l’ignorant"
+                ],
+                correct: 1,
+                explanation: "Lalla Aïcha, en amie fidèle, accueille Sidi Mohammed chaleureusement et lui offre attention et soins."
+            },
+            {
+                chapter: 11,
+                question: "Quel sentiment domine Sidi Mohammed dans ce nouvel environnement ?",
+                options: [
+                    "a) La joie d’un nouveau départ",
+                    "b) La nostalgie de Dar Chouafa",
+                    "c) La peur d’être abandonné",
+                    "d) L’excitation d’une aventure"
+                ],
+                correct: 1,
+                explanation: "Sidi Mohammed ressent un vide en pensant à sa maison et à la présence de son père, malgré l’hospitalité de Lalla Aïcha."
+            },
+            {
+                chapter: 11,
+                question: "Que représente la boîte à merveilles dans ce chapitre ?",
+                options: [
+                    "a) Un souvenir inutile",
+                    "b) Un lien avec son passé à Dar Chouafa",
+                    "c) Un cadeau de Lalla Aïcha",
+                    "d) Une source de conflit"
+                ],
+                correct: 1,
+                explanation: "La boîte devient un pont émotionnel vers son ancienne vie, aidant Sidi Mohammed à supporter le changement."
+            },
+            {
+                chapter: 11,
+                question: "Quelle est l’attitude des voisins de Lalla Aïcha envers Lalla Zoubida ?",
+                options: [
+                    "a) Ils la jugent pour sa situation",
+                    "b) Ils l’accueillent avec curiosité",
+                    "c) Ils l’ignorent complètement",
+                    "d) Ils lui offrent de l’aide"
+                ],
+                correct: 1,
+                explanation: "Les voisins observent Lalla Zoubida et son fils avec intérêt, intrigués par leur arrivée chez Lalla Aïcha."
+            },
+            {
+                chapter: 11,
+                question: "Que manque-t-il à Sidi Mohammed chez Lalla Aïcha ?",
+                options: [
+                    "a) La compagnie de Zineb",
+                    "b) La présence de son père",
+                    "c) Les leçons du msid",
+                    "d) Les plats de sa mère"
+                ],
+                correct: 1,
+                explanation: "L’absence de Moulay Abdeslam pèse lourdement sur Sidi Mohammed, qui ressent un vide familial."
+            },
+            {
+                chapter: 11,
+                question: "Quelle est l’atmosphère chez Lalla Aïcha ?",
+                options: [
+                    "a) Tendue et conflictuelle",
+                    "b) Calme et réconfortante",
+                    "c) Bruyante et agitée",
+                    "d) Froide et solitaire"
+                ],
+                correct: 1,
+                explanation: "La maison de Lalla Aïcha offre un refuge paisible à Lalla Zoubida et Sidi Mohammed, contrastant avec leurs tourments passés."
+            },
+            // Chapitre 12
+            {
+                chapter: 12,
+                question: "Quel événement marque le retour de Moulay Abdeslam ?",
+                options: [
+                    "a) Une fête organisée par les voisins",
+                    "b) Son arrivée avec de l’argent gagné",
+                    "c) Une dispute avec Lalla Zoubida",
+                    "d) Une visite surprise chez Lalla Kenza"
+                ],
+                correct: 1,
+                explanation: "Moulay Abdeslam revient des champs avec des gains, marquant la fin de leur période de crise financière."
+            },
+            {
+                chapter: 12,
+                question: "Comment Lalla Zoubida réagit-elle au retour de son mari ?",
+                options: [
+                    "a) Avec des reproches pour son absence",
+                    "b) Avec joie et gratitude",
+                    "c) Avec indifférence",
+                    "d) Avec suspicion"
+                ],
+                correct: 1,
+                explanation: "Lalla Zoubida est émue et reconnaissante de revoir son mari, surtout avec les moyens de subsistance qu’il ramène."
+            },
+            {
+                chapter: 12,
+                question: "Que fait Moulay Abdeslam avec l’argent gagné ?",
+                options: [
+                    "a) Il l’offre à Lalla Aïcha",
+                    "b) Il achète une nouvelle maison",
+                    "c) Il le donne à sa famille pour subvenir à leurs besoins",
+                    "d) Il le garde pour lui"
+                ],
+                correct: 2,
+                explanation: "Moulay Abdeslam utilise ses gains pour restaurer la stabilité financière de sa famille, montrant son dévouement."
+            },
+            {
+                chapter: 12,
+                question: "Où la famille retourne-t-elle après le séjour chez Lalla Aïcha ?",
+                options: [
+                    "a) Dans une nouvelle ville",
+                    "b) À Dar Chouafa",
+                    "c) Chez les montagnards",
+                    "d) Dans une maison plus grande"
+                ],
+                correct: 1,
+                explanation: "La famille retrouve sa maison à Dar Chouafa, symbole de leur retour à la normale."
+            },
+            {
+                chapter: 12,
+                question: "Quel rôle joue Lalla Aïcha dans ce chapitre ?",
+                options: [
+                    "a) Elle organise une fête pour le retour",
+                    "b) Elle dit au revoir avec émotion",
+                    "c) Elle refuse de les laisser partir",
+                    "d) Elle critique Moulay Abdeslam"
+                ],
+                correct: 1,
+                explanation: "Lalla Aïcha, en amie fidèle, partage un moment émouvant avec la famille au moment de leur départ."
+            },
+            {
+                chapter: 12,
+                question: "Comment Sidi Mohammed perçoit-il le retour à Dar Chouafa ?",
+                options: [
+                    "a) Avec ennui",
+                    "b) Avec un sentiment de sécurité retrouvé",
+                    "c) Avec peur",
+                    "d) Avec colère"
+                ],
+                correct: 1,
+                explanation: "Retourner à Dar Chouafa avec ses parents restaure un sentiment de stabilité et de familiarité pour Sidi Mohammed."
+            },
+            {
+                chapter: 12,
+               
