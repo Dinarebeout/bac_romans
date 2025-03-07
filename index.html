@@ -3,6 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <span id="visitorCount">500000</span>
+
+<script>
+    let counterElement = document.getElementById("visitorCount");
+    let visitorCount = 500000;
+    visitorCount++;
+    counterElement.textContent = visitorCount;
+</script>
     <title>Quiz - La Boîte à merveilles</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
